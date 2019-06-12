@@ -33,6 +33,7 @@ use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Magento\Framework\Registry;
 use Mageplaza\CronSchedule\Helper\Data;
+use RuntimeException;
 
 /**
  * Class Job
@@ -140,13 +141,32 @@ class Job extends AbstractModel
      * @param Schedule $schedule
      *
      * @return $this
+     * @throws RuntimeException
+     * @throws Exception
      */
-    public function executeJob($schedule)
+    public function executeJob(&$schedule)
     {
-        //        $callback = [$this->helper->getObject($this->getInstance()), $this->getMethod()];
-        //        call_user_func_array($callback, [$schedule]);
+        $instance = $this->getInstance();
+        $method   = $this->getMethod();
 
-        $this->helper->getObject($this->getInstance())->{$this->getMethod()}($schedule);
+        if (!isset($instance, $method)) {
+            throw new RuntimeException(__('No callbacks found'));
+        }
+
+        $model = $this->helper->getObject($instance);
+
+        $callback = [$model, $method];
+
+        if (!is_callable($callback)) {
+            throw new RuntimeException(sprintf('Invalid callback: %s::%s can\'t be called', $instance, $method));
+        }
+
+        $schedule->setExecutedAt(time());
+
+        $model->{$method}($schedule);
+        // call_user_func_array($callback, [$schedule]);
+
+        $schedule->setFinishedAt(time());
 
         return $this;
     }

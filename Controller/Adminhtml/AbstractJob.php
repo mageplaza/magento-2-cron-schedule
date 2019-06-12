@@ -210,9 +210,7 @@ abstract class AbstractJob extends Action
             $schedule = $this->scheduleFactory->create()->setData($data);
 
             try {
-                $schedule->addData(['executed_at' => time()]);
                 $this->jobFactory->create()->setData($this->helper->getJobs($name))->executeJob($schedule);
-                $schedule->addData(['finished_at' => time()]);
                 $success++;
             } catch (Exception $e) {
                 $schedule->addData([
