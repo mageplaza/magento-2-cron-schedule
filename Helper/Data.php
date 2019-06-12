@@ -110,6 +110,10 @@ class Data extends AbstractData
 
         foreach ($this->cronConfig->getJobs() as $group => $jobs) {
             foreach ((array) $jobs as $code => $job) {
+                if (!isset($job['name'], $job['instance'], $job['method'])) {
+                    continue;
+                }
+
                 if (!$name) {
                     $this->_jobs[$code] = $this->getJobData($job, $code, $group);
                 } elseif ($name === $code) {
@@ -130,7 +134,6 @@ class Data extends AbstractData
      */
     private function getJobData($job, $code, $group)
     {
-        $job['name']  = $code;
         $job['group'] = $group;
         $job['type']  = $this->getJobType($code, $group);
 
