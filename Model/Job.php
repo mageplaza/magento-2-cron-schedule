@@ -161,12 +161,12 @@ class Job extends AbstractModel
             throw new RuntimeException(sprintf('Invalid callback: %s::%s can\'t be called', $instance, $method));
         }
 
-        $schedule->setExecutedAt(time());
+        $schedule->setExecutedAt($this->helper->getTime());
 
         $model->{$method}($schedule);
         // call_user_func_array($callback, [$schedule]);
 
-        $schedule->setFinishedAt(time());
+        $schedule->setFinishedAt($this->helper->getTime());
 
         return $this;
     }

@@ -204,7 +204,8 @@ abstract class AbstractJob extends Action
             $data = [
                 'job_code'     => $name,
                 'status'       => Schedule::STATUS_SUCCESS,
-                'scheduled_at' => floor(time() / 60) * 60
+                'created_at'   => $this->helper->getTime(),
+                'scheduled_at' => $this->helper->getTime(true)
             ];
 
             $schedule = $this->scheduleFactory->create()->setData($data);
@@ -249,7 +250,8 @@ abstract class AbstractJob extends Action
             $data = [
                 'job_code'     => $name,
                 'status'       => $status,
-                'scheduled_at' => floor(time() / 60) * 60
+                'created_at'   => $this->helper->getTime(),
+                'scheduled_at' => $this->helper->getTime(true)
             ];
 
             try {

@@ -26,6 +26,8 @@ use Magento\Cron\Model\Config\Reader\Xml;
 use Magento\Cron\Model\ConfigInterface;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\Stdlib\DateTime\DateTime;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData;
@@ -59,6 +61,16 @@ class Data extends AbstractData
     private $cronConfig;
 
     /**
+     * @var TimezoneInterface
+     */
+    private $timezone;
+
+    /**
+     * @var DateTime
+     */
+    private $dateTime;
+
+    /**
      * Data constructor.
      *
      * @param Context $context
@@ -67,6 +79,8 @@ class Data extends AbstractData
      * @param Db $dbReader
      * @param Xml $xmlReader
      * @param ConfigInterface $cronConfig
+     * @param TimezoneInterface $timezone
+     * @param DateTime $dateTime
      */
     public function __construct(
         Context $context,
@@ -74,11 +88,15 @@ class Data extends AbstractData
         StoreManagerInterface $storeManager,
         Db $dbReader,
         Xml $xmlReader,
-        ConfigInterface $cronConfig
+        ConfigInterface $cronConfig,
+        TimezoneInterface $timezone,
+        DateTime $dateTime
     ) {
         $this->dbReader   = $dbReader;
         $this->xmlReader  = $xmlReader;
         $this->cronConfig = $cronConfig;
+        $this->timezone   = $timezone;
+        $this->dateTime   = $dateTime;
 
         parent::__construct($context, $objectManager, $storeManager);
     }
@@ -192,5 +210,25 @@ class Data extends AbstractData
         $job = $this->getJobs($name);
 
         return isset($job['status']) && empty($job['status']);
+    }
+
+    /**
+     * @param bool $isFloor
+     *
+     * @return string
+     */
+    public function getTime($isFloor = false)
+    {
+        if ($this->versionCompare('2.2.0')) {
+            $time = $this->dateTime->gmtTimestamp();
+        } else {
+            $time = $this->timezone->scopeTimeStamp();
+        }
+
+        if ($isFloor) {
+            $time = floor($time / 60) * 60;
+        }
+
+        return strftime('%Y-%m-%d %H:%M:%S', $time);
     }
 }
