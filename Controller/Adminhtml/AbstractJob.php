@@ -187,49 +187,42 @@ abstract class AbstractJob extends Action
     }
 
     /**
-     * @param array $jobs
-     *
-     * @return array
+     * @param array $jobData
+     * @param int $success
+     * @param int $failure
      */
-    protected function executeJobs($jobs)
+    protected function executeJob($jobData, &$success, &$failure)
     {
-        $success = 0;
-        $failure = 0;
-
-        foreach ($jobs as $name) {
-            if ($this->helper->isJobDisabled($name)) {
-                continue;
-            }
-
-            $data = [
-                'job_code'     => $name,
-                'status'       => Schedule::STATUS_SUCCESS,
-                'created_at'   => $this->helper->getTime(),
-                'scheduled_at' => $this->helper->getTime(true)
-            ];
-
-            $schedule = $this->scheduleFactory->create()->setData($data);
-
-            try {
-                $this->jobFactory->create()->setData($this->helper->getJobs($name))->executeJob($schedule);
-                $success++;
-            } catch (Exception $e) {
-                $schedule->addData([
-                    'status'      => Schedule::STATUS_ERROR,
-                    'messages'    => $e->getMessage(),
-                    'executed_at' => null,
-                ]);
-                $failure++;
-            }
-
-            try {
-                $schedule->save();
-            } catch (Exception $e) {
-                $this->messageManager->addErrorMessage($e->getMessage());
-            }
+        if (isset($jobData['status']) && empty($jobData['status'])) {
+            return;
         }
 
-        return [$success, $failure];
+        $data = [
+            'job_code'     => $jobData['name'],
+            'status'       => Schedule::STATUS_SUCCESS,
+            'created_at'   => $this->helper->getTime(),
+            'scheduled_at' => $this->helper->getTime(true)
+        ];
+
+        $schedule = $this->scheduleFactory->create()->setData($data);
+
+        try {
+            $this->jobFactory->create()->setData($jobData)->executeJob($schedule);
+            $success++;
+        } catch (Exception $e) {
+            $schedule->addData([
+                'status'      => Schedule::STATUS_ERROR,
+                'messages'    => $e->getMessage(),
+                'executed_at' => null,
+            ]);
+            $failure++;
+        }
+
+        try {
+            $schedule->save();
+        } catch (Exception $e) {
+            $this->messageManager->addErrorMessage($e->getMessage());
+        }
     }
 
     /**

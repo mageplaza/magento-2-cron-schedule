@@ -37,7 +37,12 @@ class MassExecute extends AbstractJob
     {
         $data = $this->getRequest()->getParams();
 
-        list($success, $failure) = $this->executeJobs($this->getSelectedRecords($data));
+        $success = 0;
+        $failure = 0;
+
+        foreach ($this->getSelectedRecords($data) as $name) {
+            $this->executeJob($this->helper->getJobs($name), $success, $failure);
+        }
 
         if ($success) {
             $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been executed.', $success));

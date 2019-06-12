@@ -52,7 +52,10 @@ class Save extends AbstractJob
                 $this->cacheTypeList->cleanType('config');
 
                 if ($request->getParam('is_execute')) {
-                    list($success, $failure) = $this->executeJobs([$data['name']]);
+                    $success = 0;
+                    $failure = 0;
+
+                    $this->executeJob($data, $success, $failure);
 
                     if ($success) {
                         $this->messageManager->addSuccessMessage(__('The cron job has been saved and executed.'));
