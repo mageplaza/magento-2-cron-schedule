@@ -226,9 +226,11 @@ class Data extends AbstractData
         }
 
         if ($isFloor) {
-            $time = floor($time / 60) * 60;
+            $format = '%Y-%m-%d %H:%M:00';
+        } else {
+            $format = '%Y-%m-%d %H:%M:%S';
         }
 
-        return strftime('%Y-%m-%d %H:%M:%S', $time);
+        return strftime($format, $time);
     }
 }

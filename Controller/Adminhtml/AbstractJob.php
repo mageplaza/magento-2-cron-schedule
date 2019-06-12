@@ -250,6 +250,7 @@ abstract class AbstractJob extends Action
             $data = [
                 'job_code'     => $name,
                 'status'       => $status,
+                'messages'     => 'Test Schedule',
                 'created_at'   => $this->helper->getTime(),
                 'scheduled_at' => $this->helper->getTime(true)
             ];
