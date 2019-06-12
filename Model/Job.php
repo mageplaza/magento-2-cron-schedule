@@ -22,6 +22,7 @@
 namespace Mageplaza\CronSchedule\Model;
 
 use Exception;
+use Magento\Cron\Model\Schedule;
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface as ScopeConfig;
 use Magento\Framework\App\Config\Value;
@@ -136,11 +137,16 @@ class Job extends AbstractModel
     }
 
     /**
+     * @param Schedule $schedule
+     *
      * @return $this
      */
-    public function executeJob()
+    public function executeJob($schedule)
     {
-        $this->helper->getObject($this->getInstance())->{$this->getMethod()}();
+        //        $callback = [$this->helper->getObject($this->getInstance()), $this->getMethod()];
+        //        call_user_func_array($callback, [$schedule]);
+
+        $this->helper->getObject($this->getInstance())->{$this->getMethod()}($schedule);
 
         return $this;
     }

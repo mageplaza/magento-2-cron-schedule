@@ -164,17 +164,26 @@ abstract class AbstractJob extends Action
             return $data['selected'];
         }
 
-        $jobs = array_keys($this->helper->getJobs());
+        $allJobs = $this->helper->getJobs();
 
-        if (isset($data['excluded'])) {
+        if (isset($data['excluded']) && $data['excluded'] !== 'false') {
             $excluded = $data['excluded'];
 
-            return array_filter($jobs, function ($item) use ($excluded) {
+            return array_filter(array_keys($allJobs), function ($item) use ($excluded) {
                 return !in_array($item, $excluded, true);
             });
         }
 
-        return $jobs;
+        $jobs    = array_values($allJobs);
+        $filters = (array) $data['filters'];
+        unset($filters['placeholder']);
+        foreach ($filters as $column => $value) {
+            $jobs = array_filter($jobs, function ($item) use ($column, $value) {
+                return stripos($item[$column], $value) !== false;
+            });
+        }
+
+        return array_column($jobs, 'name');
     }
 
     /**
@@ -202,7 +211,7 @@ abstract class AbstractJob extends Action
 
             try {
                 $schedule->addData(['executed_at' => time()]);
-                $this->jobFactory->create()->setData($this->helper->getJobs($name))->executeJob();
+                $this->jobFactory->create()->setData($this->helper->getJobs($name))->executeJob($schedule);
                 $schedule->addData(['finished_at' => time()]);
                 $success++;
             } catch (Exception $e) {
