@@ -1,0 +1,91 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CronSchedule
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+#mpcronschedule .timeline-content {
+    border: none;
+}
+
+#tooltip-block {
+    background: #fff;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+#tooltip-block td, #tooltip-block th {
+    padding: 5px;
+    text-align: left;
+}
+
+div.timeline-event {
+    min-width: 3px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+div.timeline-event.pending {
+    background-color: #63c2de;
+}
+
+div.timeline-event.running {
+    background-color: #6f42c1;
+}
+
+div.timeline-event.success {
+    background-color: #4dbd74;
+}
+
+div.timeline-event.error {
+    background-color: #f86c6b;
+}
+
+div.timeline-event.missed {
+    background-color: #ffc107;
+}
+
+span.tooltip-severity {
+    background: none repeat scroll 0 0;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    padding: 2px 5px 1px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+span.tooltip-severity.pending {
+    background-color: #63c2de;
+}
+
+span.tooltip-severity.running {
+    background-color: #6f42c1;
+}
+
+span.tooltip-severity.success {
+    background-color: #4dbd74;
+}
+
+span.tooltip-severity.error {
+    background-color: #f86c6b;
+}
+
+span.tooltip-severity.missed {
+    background-color: #ffc107;
+}

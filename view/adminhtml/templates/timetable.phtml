@@ -1,0 +1,147 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CronSchedule
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+use Mageplaza\CronSchedule\Block\Adminhtml\Timetable;
+use Mageplaza\CronSchedule\Helper\Data;
+
+/** @var Timetable $block */
+$data = $block->getCronJobData();
+?>
+
+<fieldset class="fieldset admin__fieldset">
+    <div class="field admin__field _required required">
+        <label class="label admin__field-label" for="mpcronschedule-period">
+            <?= $block->escapeHtml(__('Select Time')) ?>
+        </label>
+        <div class="control admin__field-control">
+            <select id="mpcronschedule-period" class="admin__control-select">
+                <option value="day"><?= $block->escapeHtml(__('Last 24 Hours')) ?></option>
+                <option value="week"><?= $block->escapeHtml(__('Last 7 Days')) ?></option>
+                <option value="month"><?= $block->escapeHtml(__('Last 30 Days')) ?></option>
+                <option value="all"><?= $block->escapeHtml(__('All Time')) ?></option>
+            </select>
+        </div>
+    </div>
+</fieldset>
+
+<div id="mpcronschedule"></div>
+<div id="tooltip-block" style="position:absolute; display:none"></div>
+
+<script type="text/javascript">
+    google.load('visualization', '1');
+
+    // Set callback to run when API is loaded
+    google.setOnLoadCallback(drawVisualization);
+
+    var hour       = 1000 * 60 * 60,
+        day        = hour * 24,
+        week       = day * 7,
+        month      = day * 30,
+        orgOptions = {
+            animate: false,
+            animateZoom: false,
+            axisOnTop: true,
+            eventMarginAxis: 5,
+            selectable: false,
+            stackEvents: false,
+            groupMinHeight: 35,
+            min: new Date((new Date()).valueOf() - day),
+            max: new Date((new Date()).valueOf() + hour)
+        };
+
+    function drawVisualization () {
+        // Create and populate a data table
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'start');
+        data.addColumn('datetime', 'end');
+        data.addColumn('string', 'group');
+        data.addColumn('string', 'className');
+        data.addColumn('string', 'content');
+
+        <?php $i = 0; foreach ($data as $row) : ?>
+        data.addRow(<?= $block->escapeJsQuote($block->getRow($row)) ?>);
+        <?php endforeach; ?>
+
+        // Instantiate our timeline object
+        var timeline = new links.Timeline(document.getElementById('mpcronschedule'), orgOptions);
+        timeline.setData(data);
+        timeline.move(0);
+
+        require(['jquery', 'underscore'], function ($, _) {
+            $('#mpcronschedule-period').on('change', function () {
+                timeline.setOptions(_.extend(orgOptions, getOptions($(this).val())));
+                timeline.redraw();
+                timeline.move(0);
+            });
+        });
+    }
+
+    function getOptions (period) {
+        var newDate = (new Date()).valueOf();
+
+        switch (period){
+            case 'day':
+                return {
+                    min: new Date(newDate - day),
+                    max: new Date(newDate + hour)
+                };
+            case 'week':
+                return {
+                    min: new Date(newDate - week),
+                    max: new Date(newDate + hour)
+                };
+            case 'month':
+                return {
+                    min: new Date(newDate - month),
+                    max: new Date(newDate + hour)
+                };
+            default:
+                return {
+                    min: null,
+                    max: null
+                };
+        }
+    }
+
+    require(['jquery', 'jquery/ui'], function ($) {
+        var tooltip = $('#tooltip-block'),
+            data    = <?= $block->escapeJsQuote(Data::jsonEncode($data)) ?>;
+
+        $(document).on('mouseover', '.timeline-event', function (event) {
+            var classAttr = $(this).attr('class').split(' ');
+
+            if (classAttr.length > 4) {
+                tooltip.show();
+
+                tooltip.css({
+                    top: (event.pageY + 5) + 'px',
+                    left: (event.pageX + 5) + 'px'
+                });
+
+                tooltip.html(data[classAttr[4]]['tooltip']);
+            }
+        });
+
+        $(document).on('mouseout', '.timeline-event', function () {
+            tooltip.hide();
+        });
+    });
+</script>
