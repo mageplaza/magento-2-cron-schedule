@@ -128,28 +128,6 @@
                     </item>
                 </argument>
             </action>
-            <action name="error">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="type" xsi:type="string">error</item>
-                        <item name="label" xsi:type="string" translate="true">Test Error</item>
-                        <item name="url" xsi:type="url" path="mpcronschedule/job/massScheduleTest">
-                            <param name="status">error</param>
-                        </item>
-                    </item>
-                </argument>
-            </action>
-            <action name="missed">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="type" xsi:type="string">missed</item>
-                        <item name="label" xsi:type="string" translate="true">Test Missed</item>
-                        <item name="url" xsi:type="url" path="mpcronschedule/job/massScheduleTest">
-                            <param name="status">missed</param>
-                        </item>
-                    </item>
-                </argument>
-            </action>
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>

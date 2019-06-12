@@ -21,8 +21,6 @@
 
 namespace Mageplaza\CronSchedule\Helper;
 
-use Magento\Cron\Model\Config\Reader\Db;
-use Magento\Cron\Model\Config\Reader\Xml;
 use Magento\Cron\Model\ConfigInterface;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\ObjectManagerInterface;
@@ -39,21 +37,6 @@ use Mageplaza\Core\Helper\AbstractData;
 class Data extends AbstractData
 {
     const CONFIG_MODULE_PATH = 'mpcronschedule';
-
-    /**
-     * @var array
-     */
-    protected $_jobs = [];
-
-    /**
-     * @var Db
-     */
-    private $dbReader;
-
-    /**
-     * @var Xml
-     */
-    private $xmlReader;
 
     /**
      * @var ConfigInterface
@@ -76,8 +59,6 @@ class Data extends AbstractData
      * @param Context $context
      * @param ObjectManagerInterface $objectManager
      * @param StoreManagerInterface $storeManager
-     * @param Db $dbReader
-     * @param Xml $xmlReader
      * @param ConfigInterface $cronConfig
      * @param TimezoneInterface $timezone
      * @param DateTime $dateTime
@@ -86,14 +67,10 @@ class Data extends AbstractData
         Context $context,
         ObjectManagerInterface $objectManager,
         StoreManagerInterface $storeManager,
-        Db $dbReader,
-        Xml $xmlReader,
         ConfigInterface $cronConfig,
         TimezoneInterface $timezone,
         DateTime $dateTime
     ) {
-        $this->dbReader   = $dbReader;
-        $this->xmlReader  = $xmlReader;
         $this->cronConfig = $cronConfig;
         $this->timezone   = $timezone;
         $this->dateTime   = $dateTime;
@@ -118,13 +95,7 @@ class Data extends AbstractData
      */
     public function getJobs($name = null)
     {
-        if (isset($this->_jobs[$name])) {
-            return $this->_jobs[$name];
-        }
-
-        if (!$name && $this->_jobs) {
-            return $this->_jobs;
-        }
+        $data = [];
 
         foreach ($this->cronConfig->getJobs() as $group => $jobs) {
             foreach ((array) $jobs as $code => $job) {
@@ -133,14 +104,14 @@ class Data extends AbstractData
                 }
 
                 if (!$name) {
-                    $this->_jobs[$code] = $this->getJobData($job, $code, $group);
+                    $data[$code] = $this->getJobData($job, $code, $group);
                 } elseif ($name === $code) {
                     return $this->getJobData($job, $code, $group);
                 }
             }
         }
 
-        return $this->_jobs;
+        return $data;
     }
 
     /**
@@ -154,7 +125,6 @@ class Data extends AbstractData
     {
         $job['name']  = $code;
         $job['group'] = $group;
-        $job['type']  = $this->getJobType($code, $group);
 
         if (!isset($job['schedule'])) {
             $job['schedule'] = '';
@@ -176,41 +146,15 @@ class Data extends AbstractData
     }
 
     /**
-     * @param string $code
-     * @param string $group
-     *
-     * @return string
-     */
-    private function getJobType($code, $group)
-    {
-        $xml = isset($this->xmlReader->read()[$group][$code]);
-        $db  = isset($this->dbReader->get()[$group][$code]);
-
-        if ($xml && $db) {
-            return 'db_xml';
-        }
-
-        if ($db) {
-            return 'db';
-        }
-
-        if ($xml) {
-            return 'xml';
-        }
-
-        return '';
-    }
-
-    /**
      * @param string $name
      *
      * @return bool
      */
     public function isJobDisabled($name)
     {
-        $job = $this->getJobs($name);
+        $jobData = $this->getJobs($name);
 
-        return isset($job['status']) && empty($job['status']);
+        return isset($jobData['status']) && empty($jobData['status']);
     }
 
     /**

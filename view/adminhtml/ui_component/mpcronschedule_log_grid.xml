@@ -203,9 +203,15 @@
                     <item name="dataType" xsi:type="string">date</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
                     <item name="label" xsi:type="string" translate="true">Finished At</item>
-                    <!--                    <item name="visible" xsi:type="boolean">false</item>-->
                 </item>
             </argument>
         </column>
+        <actionsColumn name="actions" class="Mageplaza\CronSchedule\Ui\Component\Listing\Column\LogActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">schedule_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
     </columns>
 </listing>

@@ -224,39 +224,4 @@ abstract class AbstractJob extends Action
             $this->messageManager->addErrorMessage($e->getMessage());
         }
     }
-
-    /**
-     * @param array $jobs
-     * @param string $status
-     *
-     * @return int
-     */
-    protected function scheduleJobs($jobs, $status = Schedule::STATUS_PENDING)
-    {
-        $count = 0;
-
-        foreach ($jobs as $name) {
-            if ($this->helper->isJobDisabled($name)) {
-                continue;
-            }
-
-            $data = [
-                'job_code'     => $name,
-                'status'       => $status,
-                'messages'     => 'Test Schedule',
-                'created_at'   => $this->helper->getTime(),
-                'scheduled_at' => $this->helper->getTime(true)
-            ];
-
-            try {
-                $this->scheduleFactory->create()->setData($data)->save();
-
-                $count++;
-            } catch (Exception $e) {
-                $this->messageManager->addErrorMessage($e->getMessage());
-            }
-        }
-
-        return $count;
-    }
 }
