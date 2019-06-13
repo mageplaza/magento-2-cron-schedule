@@ -24,7 +24,6 @@
     <head>
         <css src="Mageplaza_CronSchedule::css/timeline.css"/>
         <css src="Mageplaza_CronSchedule::css/style.css"/>
-        <script src="Mageplaza_CronSchedule::js/timeline-min.js"/>
         <script src="//www.google.com/jsapi" src_type="url"/>
     </head>
     <body>

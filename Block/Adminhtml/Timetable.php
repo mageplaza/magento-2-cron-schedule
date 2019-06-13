@@ -74,7 +74,7 @@ class Timetable extends Template
     }
 
     /**
-     * @return array|string
+     * @return array
      */
     public function getCronJobData()
     {
@@ -112,7 +112,12 @@ class Timetable extends Template
             $count++;
         }
 
-        return $data;
+        $rows = [];
+        foreach ($data as $datum) {
+            $rows[] = $this->getRow($datum);
+        }
+
+        return [$data, $rows];
     }
 
     /**
@@ -195,16 +200,16 @@ class Timetable extends Template
      */
     public function formatDate($date = null, $format = \IntlDateFormatter::SHORT, $showTime = false, $timezone = null)
     {
-        return parent::formatDate($date, IntlDateFormatter::MEDIUM, true, $this->_localeDate->getConfigTimezone());
+        return parent::formatDate($date, IntlDateFormatter::MEDIUM, true, $this->_localeDate->getDefaultTimezone());
     }
 
     /**
      * @param array $row
      *
-     * @return string
+     * @return array
      */
     public function getRow($row)
     {
-        return sprintf('[%s, %s, "%s", "%s", ""]', $row['start'], $row['end'], $row['group'], $row['class']);
+        return [$row['start'], $row['end'], $row['group'], $row['class'], ''];
     }
 }
