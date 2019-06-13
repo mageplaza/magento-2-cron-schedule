@@ -125,7 +125,7 @@ class JobProvider extends AbstractDataProvider
         // add filter
         foreach ($this->filters as $type => $filter) {
             $field = $filter['field'];
-            $value = $filter['value'];
+            $value = str_replace('\\', '', $filter['value']);
 
             $items = array_filter($items, function ($item) use ($field, $value, $type) {
                 switch ($type) {
