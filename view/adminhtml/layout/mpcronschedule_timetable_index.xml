@@ -22,7 +22,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Mageplaza_CronSchedule::css/timeline.css"/>
+        <css src="Mageplaza_CronSchedule::css/lib/timeline.css"/>
         <css src="Mageplaza_CronSchedule::css/style.css"/>
         <script src="//www.google.com/jsapi" src_type="url"/>
     </head>

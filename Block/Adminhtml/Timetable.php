@@ -137,7 +137,7 @@ class Timetable extends Template
         $tooltip    .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Status'), $statusHtml);
 
         if ($message = $schedule->getMessages()) {
-            $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Message'), $message);
+            $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Message'), $this->escapeQuote($message));
         }
 
         if ($status === Schedule::STATUS_SUCCESS) {
