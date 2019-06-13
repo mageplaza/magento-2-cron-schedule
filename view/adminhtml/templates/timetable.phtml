@@ -45,6 +45,10 @@ list($data, $rows) = $block->getCronJobData();
 <div id="mpcronschedule"></div>
 <div id="tooltip-block" style="position:absolute; display:none"></div>
 
+<script type="text/javascript">
+    window.mpcronschedule_offset = '<?= $block->escapeJsQuote($block->getTimezone()) ?>';
+</script>
+
 <script type="text/x-magento-init">
 {
     "#mpcronschedule": {
@@ -54,8 +58,4 @@ list($data, $rows) = $block->getCronJobData();
         }
     }
 }
-</script>
-
-<script type="text/javascript">
-    google.load('visualization', '1');
 </script>

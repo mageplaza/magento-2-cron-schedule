@@ -21,7 +21,8 @@
 define([
     'jquery',
     'underscore',
-    'Mageplaza_CronSchedule/js/lib/timeline-min'
+    'Mageplaza_CronSchedule/js/lib/timeline-min',
+    'https://www.google.com/jsapi'
 ], function ($, _) {
     "use strict";
 
@@ -43,14 +44,16 @@ define([
             min: new Date((new Date()).valueOf() - day + offset),
             max: new Date((new Date()).valueOf() + hour + offset)
         };
-    // google.load('visualization', '0');
 
     $.widget('mageplaza.cron_schedule', {
         _create: function () {
             var self = this;
 
-            // Set callback to run when API is loaded
-            google.setOnLoadCallback(this.drawVisualization(this));
+            google.load('visualization', '1', {
+                'callback': function () {
+                    self.drawVisualization();
+                }
+            });
 
             var tooltip = $('#tooltip-block');
 
@@ -74,7 +77,9 @@ define([
             });
         },
 
-        drawVisualization: function (self) {
+        drawVisualization: function () {
+            var self = this;
+
             // Create and populate a data table
             var data = new google.visualization.DataTable();
             data.addColumn('datetime', 'start');
@@ -83,7 +88,7 @@ define([
             data.addColumn('string', 'className');
             data.addColumn('string', 'content');
 
-            _.each(self.options.rows, function (row) {
+            _.each(this.options.rows, function (row) {
                 row[0] = eval.call(null, row[0]);
                 row[1] = eval.call(null, row[1]);
 

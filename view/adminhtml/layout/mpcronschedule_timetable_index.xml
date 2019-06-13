@@ -24,7 +24,6 @@
     <head>
         <css src="Mageplaza_CronSchedule::css/lib/timeline.css"/>
         <css src="Mageplaza_CronSchedule::css/style.css"/>
-        <script src="//www.google.com/jsapi" src_type="url"/>
     </head>
     <body>
         <referenceContainer name="content">

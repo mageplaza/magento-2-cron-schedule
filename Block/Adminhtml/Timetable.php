@@ -200,7 +200,7 @@ class Timetable extends Template
      */
     public function formatDate($date = null, $format = \IntlDateFormatter::SHORT, $showTime = false, $timezone = null)
     {
-        return parent::formatDate($date, IntlDateFormatter::MEDIUM, true, $this->_localeDate->getDefaultTimezone());
+        return parent::formatDate($date, IntlDateFormatter::MEDIUM, true, $this->_localeDate->getConfigTimezone());
     }
 
     /**
@@ -211,5 +211,13 @@ class Timetable extends Template
     public function getRow($row)
     {
         return [$row['start'], $row['end'], $row['group'], $row['class'], ''];
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimezone()
+    {
+        return $this->_localeDate->getConfigTimezone();
     }
 }
