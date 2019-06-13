@@ -27,6 +27,8 @@ namespace Mageplaza\CronSchedule\Model\Config\Source;
  */
 class EmailTime extends AbstractSource
 {
+    const EVERY_1_M  = '* * * * *';
+    const EVERY_5_M  = '*/5 * * * *';
     const EVERY_10_M = '*/10 * * * *';
     const EVERY_30_M = '*/30 * * * *';
     const EVERY_1_H  = '0 * * * *';
@@ -41,6 +43,8 @@ class EmailTime extends AbstractSource
     public static function getOptionArray()
     {
         return [
+            self::EVERY_1_M  => __('Every minute'),
+            self::EVERY_5_M  => __('Every 5 Minutes'),
             self::EVERY_10_M => __('Every 10 Minutes'),
             self::EVERY_30_M => __('Every 30 Minutes'),
             self::EVERY_1_H  => __('Every Hour'),
