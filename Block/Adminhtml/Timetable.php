@@ -21,10 +21,12 @@
 
 namespace Mageplaza\CronSchedule\Block\Adminhtml;
 
+use IntlDateFormatter;
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
 use Magento\Cron\Model\Schedule;
 use Magento\Framework\Stdlib\DateTime\DateTime;
+use Mageplaza\CronSchedule\Helper\Data;
 use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 
 /**
@@ -34,29 +36,37 @@ use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 class Timetable extends Template
 {
     /**
+     * @var Data
+     */
+    private $helper;
+
+    /**
      * @var DateTime
      */
-    public $datetime;
+    private $datetime;
 
     /**
      * @var CollectionFactory
      */
-    public $collectionFactory;
+    private $collectionFactory;
 
     /**
      * Timetable constructor.
      *
      * @param Context $context
+     * @param Data $helper
      * @param DateTime $datetime
      * @param CollectionFactory $collectionFactory
      * @param array $data
      */
     public function __construct(
         Context $context,
+        Data $helper,
         DateTime $datetime,
         CollectionFactory $collectionFactory,
         array $data = []
     ) {
+        $this->helper            = $helper;
         $this->datetime          = $datetime;
         $this->collectionFactory = $collectionFactory;
 
@@ -83,10 +93,11 @@ class Timetable extends Template
 
             switch ($status) {
                 case Schedule::STATUS_RUNNING:
-                    $end = $this->datetime->date('Y-m-d H:i:s');
+                    $end = $this->helper->getTime();
                     break;
                 case Schedule::STATUS_SUCCESS:
-                    $end = $schedule->getFinishedAt();
+                    $start = $schedule->getExecutedAt();
+                    $end   = $schedule->getFinishedAt();
                     break;
             }
 
@@ -129,15 +140,27 @@ class Timetable extends Template
             $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Total Executed Time'), $time . ' second(s)');
         }
 
-        $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Created Date'), $schedule->getCreatedAt());
-        $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Schedule Date'), $schedule->getScheduledAt());
+        $tooltip .= sprintf(
+            '<tr><th>%s</th><td>%s</td></tr>',
+            __('Created Date'),
+            $this->formatDate($schedule->getCreatedAt())
+        );
+        $tooltip .= sprintf(
+            '<tr><th>%s</th><td>%s</td></tr>',
+            __('Schedule Date'),
+            $this->formatDate($schedule->getScheduledAt())
+        );
 
         if ($executedAt = $schedule->getExecutedAt()) {
-            $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Executed Date'), $executedAt);
+            $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Executed Date'), $this->formatDate($executedAt));
         }
 
         if ($finishedAt = $schedule->getFinishedAt()) {
-            $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __(' Finished Date'), $finishedAt);
+            $tooltip .= sprintf(
+                '<tr><th>%s</th><td>%s</td></tr>',
+                __(' Finished Date'),
+                $this->formatDate($finishedAt)
+            );
         }
 
         $tooltip .= '</table>';
@@ -152,12 +175,27 @@ class Timetable extends Template
      */
     public function getDate($date)
     {
+        $date = $this->formatDate($date);
+
         return sprintf(
             'new Date(%d,%d,%s)',
             $this->datetime->date('Y', $date),
             $this->datetime->date('m', $date) - 1,
             $this->datetime->date('d,H,i,s', $date)
         );
+    }
+
+    /**
+     * @param null $date
+     * @param int $format
+     * @param bool $showTime
+     * @param null $timezone
+     *
+     * @return string
+     */
+    public function formatDate($date = null, $format = \IntlDateFormatter::SHORT, $showTime = false, $timezone = null)
+    {
+        return parent::formatDate($date, IntlDateFormatter::MEDIUM, true, $this->_localeDate->getConfigTimezone());
     }
 
     /**

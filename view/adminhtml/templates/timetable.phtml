@@ -63,6 +63,7 @@ $data = $block->getCronJobData();
             selectable: false,
             stackEvents: false,
             groupMinHeight: 35,
+            showCurrentTime: false,
             min: new Date((new Date()).valueOf() - day),
             max: new Date((new Date()).valueOf() + hour)
         };
@@ -115,8 +116,8 @@ $data = $block->getCronJobData();
                 };
             default:
                 return {
-                    min: null,
-                    max: null
+                    min: new Date(-2208985200000),
+                    max: new Date(32503683600000)
                 };
         }
     }
