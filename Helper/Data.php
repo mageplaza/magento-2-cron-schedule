@@ -135,11 +135,11 @@ class Data extends AbstractData
         }
 
         if (!isset($job['status'])) {
-            $job['status'] = 1;
+            $job['status'] = '1';
         }
 
         if (!isset($job['is_user'])) {
-            $job['is_user'] = 0;
+            $job['is_user'] = '0';
         }
 
         return $job;
