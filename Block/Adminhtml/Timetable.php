@@ -148,23 +148,23 @@ class Timetable extends Template
         $tooltip .= sprintf(
             '<tr><th>%s</th><td>%s</td></tr>',
             __('Created Date'),
-            $this->formatDate($schedule->getCreatedAt())
+            $this->dateFormat($schedule->getCreatedAt())
         );
         $tooltip .= sprintf(
             '<tr><th>%s</th><td>%s</td></tr>',
             __('Schedule Date'),
-            $this->formatDate($schedule->getScheduledAt())
+            $this->dateFormat($schedule->getScheduledAt())
         );
 
         if ($executedAt = $schedule->getExecutedAt()) {
-            $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Executed Date'), $this->formatDate($executedAt));
+            $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Executed Date'), $this->dateFormat($executedAt));
         }
 
         if ($finishedAt = $schedule->getFinishedAt()) {
             $tooltip .= sprintf(
                 '<tr><th>%s</th><td>%s</td></tr>',
                 __(' Finished Date'),
-                $this->formatDate($finishedAt)
+                $this->dateFormat($finishedAt)
             );
         }
 
@@ -180,7 +180,7 @@ class Timetable extends Template
      */
     public function getDate($date)
     {
-        $date = $this->formatDate($date);
+        $date = $this->dateFormat($date);
 
         return sprintf(
             'new Date(%d,%d,%s)',
@@ -192,15 +192,12 @@ class Timetable extends Template
 
     /**
      * @param null $date
-     * @param int $format
-     * @param bool $showTime
-     * @param null $timezone
      *
      * @return string
      */
-    public function formatDate($date = null, $format = \IntlDateFormatter::SHORT, $showTime = false, $timezone = null)
+    public function dateFormat($date = null)
     {
-        return parent::formatDate($date, IntlDateFormatter::MEDIUM, true, $this->_localeDate->getConfigTimezone());
+        return $this->formatDate($date, IntlDateFormatter::MEDIUM, true, $this->getTimezone());
     }
 
     /**

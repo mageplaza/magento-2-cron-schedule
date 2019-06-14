@@ -37,7 +37,7 @@ class Index extends AbstractLog
     public function execute()
     {
         $resultPage = $this->_initAction();
-        $resultPage->getConfig()->getTitle()->prepend(__('Cron Jobs Log'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Cron Jobs Logs'));
 
         return $resultPage;
     }

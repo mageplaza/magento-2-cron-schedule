@@ -27,7 +27,7 @@
                 <resource id="Magento_Backend::system">
                     <resource id="Mageplaza_CronSchedule::mpcronschedule" title="Cron Schedule" translate="title" sortOrder="110">
                         <resource id="Mageplaza_CronSchedule::job" title="Manage Cron Jobs" translate="title" sortOrder="10"/>
-                        <resource id="Mageplaza_CronSchedule::log" title="Cron Jobs Log" translate="title" sortOrder="20"/>
+                        <resource id="Mageplaza_CronSchedule::log" title="Cron Jobs Logs" translate="title" sortOrder="20"/>
                         <resource id="Mageplaza_CronSchedule::timetable" title="Cron Jobs Timetable" translate="title" sortOrder="30"/>
                     </resource>
                 </resource>

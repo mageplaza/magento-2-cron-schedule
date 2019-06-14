@@ -25,5 +25,8 @@
         <job name="mpcronschedule_send_email" instance="Mageplaza\CronSchedule\Model\EmailNotify" method="sendEmail">
             <config_path>mpcronschedule/general/schedule</config_path>
         </job>
+        <job name="mpcronschedule_clear_log" instance="Mageplaza\CronSchedule\Model\Schedule" method="clearLog">
+            <config_path>mpcronschedule/general/clear_schedule</config_path>
+        </job>
     </group>
 </config>

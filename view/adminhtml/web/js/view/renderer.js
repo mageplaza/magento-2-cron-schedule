@@ -30,7 +30,6 @@ define([
         day        = hour * 24,
         week       = day * 7,
         month      = day * 30,
-        offset     = new Date().getTimezoneOffset() * 1000 * 60,
         orgOptions = {
             animate: false,
             animateZoom: false,
@@ -39,10 +38,11 @@ define([
             selectable: false,
             stackEvents: false,
             groupMinHeight: 35,
+            showCurrentTime: false,
             zoomMin: 1000,
             zoomMax: 1000 * 60 * 60 * 24 * 365 * 10,
-            min: new Date((new Date()).valueOf() - day + offset),
-            max: new Date((new Date()).valueOf() + hour + offset)
+            min: new Date((new Date()).valueOf() - day),
+            max: new Date((new Date()).valueOf() + hour)
         };
 
     $.widget('mageplaza.cron_schedule', {
@@ -97,15 +97,6 @@ define([
 
             // Instantiate our timeline object
             var timeline = new links.Timeline(document.getElementById('mpcronschedule'), orgOptions);
-
-            timeline.repaintCurrentTime = function () {
-                links.Timeline.prototype.repaintCurrentTime.call(this);
-                var nowOffset = new Date(new Date().valueOf());
-
-                this.dom.currentTime.title = "Current time: " + nowOffset.toGMTString();
-            };
-
-            timeline.setCurrentTime(new Date((new Date()).valueOf() + offset));
             timeline.setData(data);
             timeline.move(0);
 
@@ -122,18 +113,18 @@ define([
             switch (period){
                 case 'day':
                     return {
-                        min: new Date(newDate - day + offset),
-                        max: new Date(newDate + hour + offset)
+                        min: new Date(newDate - day),
+                        max: new Date(newDate + hour)
                     };
                 case 'week':
                     return {
-                        min: new Date(newDate - week + offset),
-                        max: new Date(newDate + hour + offset)
+                        min: new Date(newDate - week),
+                        max: new Date(newDate + hour)
                     };
                 case 'month':
                     return {
-                        min: new Date(newDate - month + offset),
-                        max: new Date(newDate + hour + offset)
+                        min: new Date(newDate - month),
+                        max: new Date(newDate + hour)
                     };
                 default:
                     return {

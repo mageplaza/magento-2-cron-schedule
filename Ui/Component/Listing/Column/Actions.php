@@ -77,15 +77,6 @@ class Actions extends Column
                     'href'  => $this->urlBuilder->getUrl('mpcronschedule/job/edit', ['name' => $item['name']]),
                     'label' => __('Edit')
                 ];
-
-                $item[$name]['delete'] = [
-                    'href'    => $this->urlBuilder->getUrl('mpcronschedule/job/delete', ['name' => $item['name']]),
-                    'label'   => __('Delete'),
-                    'confirm' => [
-                        'title'   => __('Delete job'),
-                        'message' => __('Are you sure to delete this job?'),
-                    ],
-                ];
             }
         }
 

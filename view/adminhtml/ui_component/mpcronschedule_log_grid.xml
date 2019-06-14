@@ -34,7 +34,6 @@
                 <item name="class" xsi:type="string">primary</item>
                 <item name="url" xsi:type="string">*/*/clear</item>
             </item>
-            <item name="run" xsi:type="string">Mageplaza\CronSchedule\Block\Adminhtml\Job\RunButton</item>
         </item>
     </argument>
     <dataSource name="mpcronschedule_log_grid_data_source">

@@ -62,7 +62,7 @@ class Save extends AbstractJob
                     }
 
                     if ($failure) {
-                        $this->messageManager->addErrorMessage(__('The cron job can not execute. Please check the Cron Jobs Log for more details.'));
+                        $this->messageManager->addErrorMessage(__('The cron job can not execute. Please check the Cron Jobs Logs for more details.'));
                     }
                 } else {
                     $this->messageManager->addSuccessMessage(__('The cron job has been saved.'));

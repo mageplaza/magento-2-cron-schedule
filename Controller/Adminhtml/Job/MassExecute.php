@@ -50,7 +50,7 @@ class MassExecute extends AbstractJob
 
         if ($failure) {
             $this->messageManager->addErrorMessage(__(
-                'A total of %1 record(s) can not execute. Please check the Cron Jobs Log for more details.',
+                'A total of %1 record(s) can not execute. Please check the Cron Jobs Logs for more details.',
                 $failure
             ));
         }

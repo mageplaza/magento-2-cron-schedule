@@ -30,6 +30,7 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
 use Mageplaza\CronSchedule\Model\Config\Source\Group;
 use Mageplaza\CronSchedule\Model\Config\Source\JobStatus;
+use Mageplaza\CronSchedule\Model\EmailNotify;
 use Mageplaza\CronSchedule\Model\Job;
 
 /**
@@ -119,6 +120,7 @@ class Main extends Generic
             'name'     => 'instance',
             'label'    => __('Instance Classpath'),
             'title'    => __('Instance Classpath'),
+            'note'     => __('E.g: ' . EmailNotify::class),
             'required' => true
         ]);
 
@@ -126,6 +128,7 @@ class Main extends Generic
             'name'     => 'method',
             'label'    => __('Job Method'),
             'title'    => __('Job Method'),
+            'note'     => __('E.g: sendEmail'),
             'required' => true
         ]);
 

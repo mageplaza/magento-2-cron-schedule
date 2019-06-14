@@ -27,6 +27,11 @@
             <resource>Mageplaza_CronSchedule::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
                 <label>General</label>
+                <field id="clear_schedule" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Schedule For Clearing Logs</label>
+                    <source_model>Mageplaza\CronSchedule\Model\Config\Source\ClearTime</source_model>
+                    <comment>Cron Jobs Logs will be cleared on a regular basis.</comment>
+                </field>
                 <field id="backend_notification" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Backend Notifications</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

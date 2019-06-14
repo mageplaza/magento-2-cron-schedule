@@ -24,7 +24,7 @@
     <default>
         <mpcronschedule>
             <general>
-                <enabled>1</enabled>
+                <clear_schedule>0 0 * * *</clear_schedule>
                 <backend_notification>1</backend_notification>
                 <email_notification>1</email_notification>
                 <send_from>general</send_from>
