@@ -62,9 +62,15 @@ class ConfigObserver implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
+        if ($day = $this->helper->getClearSchedule()) {
+            $expr = sprintf('0 */%s * * *', $day * 24);
+        } else {
+            $expr = '';
+        }
+
         $this->modelConfig->saveConfig(
             Data::CONFIG_MODULE_PATH . '/general/clear_schedule_expr',
-            sprintf('0 */%s * * *', $this->helper->getclearschedule() * 24),
+            $expr,
             ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
             0
         );

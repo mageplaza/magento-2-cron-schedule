@@ -30,6 +30,7 @@
                 <email_template>mpcronschedule_general_email_template</email_template>
                 <schedule>0 * * * *</schedule>
                 <clear_schedule>1</clear_schedule>
+                <clear_schedule_expr>0 */24 * * *</clear_schedule_expr>
             </general>
         </mpcronschedule>
     </default>
