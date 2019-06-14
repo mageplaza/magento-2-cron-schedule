@@ -29,8 +29,8 @@
                 <send_from>general</send_from>
                 <email_template>mpcronschedule_general_email_template</email_template>
                 <schedule>0 * * * *</schedule>
-                <clear_schedule>1</clear_schedule>
-                <clear_schedule_expr>0 */24 * * *</clear_schedule_expr>
+                <clear_schedule>30</clear_schedule>
+                <clear_schedule_expr>0 */720 * * *</clear_schedule_expr>
             </general>
         </mpcronschedule>
     </default>
