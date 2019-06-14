@@ -24,12 +24,12 @@
     <default>
         <mpcronschedule>
             <general>
-                <clear_schedule>0 0 * * *</clear_schedule>
                 <backend_notification>1</backend_notification>
                 <email_notification>1</email_notification>
                 <send_from>general</send_from>
                 <email_template>mpcronschedule_general_email_template</email_template>
                 <schedule>0 * * * *</schedule>
+                <clear_schedule>1</clear_schedule>
             </general>
         </mpcronschedule>
     </default>

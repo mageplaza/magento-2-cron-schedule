@@ -89,6 +89,16 @@ class Data extends AbstractData
     }
 
     /**
+     * @param null $storeId
+     *
+     * @return int
+     */
+    public function getClearSchedule($storeId = null)
+    {
+        return (int) $this->getConfigGeneral('clear_schedule', $storeId);
+    }
+
+    /**
      * @param null $name
      *
      * @return array
