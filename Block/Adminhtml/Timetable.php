@@ -86,7 +86,7 @@ class Timetable extends Template
         $schedules->getSelect()->order('job_code');
 
         /** @var Schedule $schedule */
-        foreach ($schedules as $schedule) {
+        foreach ($schedules->getItems() as $schedule) {
             $status = $schedule->getStatus();
             $start  = $schedule->getScheduledAt();
             $end    = $start;

@@ -164,7 +164,6 @@ class Job extends AbstractModel
         $schedule->setExecutedAt($this->helper->getTime());
 
         $model->{$method}($schedule);
-        // call_user_func_array($callback, [$schedule]);
 
         $schedule->setFinishedAt($this->helper->getTime());
 

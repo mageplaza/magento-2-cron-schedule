@@ -58,7 +58,7 @@ class Validate extends AbstractJob
         $jobs    = $this->helper->getJobs();
 
         if ($name !== $orgName && isset($jobs[$name])) {
-            $this->messageManager->addErrorMessage(__('An cron job with this code already exists.'));
+            $this->messageManager->addErrorMessage(__('A cron job with this code already exists.'));
             $error = true;
         }
 
