@@ -175,7 +175,7 @@ class Main extends Generic
     protected function getJobObject()
     {
         if ($this->_job === null) {
-            return $this->_coreRegistry->registry('mpcronschedule_job');
+            $this->_job = $this->_coreRegistry->registry('mpcronschedule_job');
         }
 
         return $this->_job;

@@ -21,6 +21,7 @@
 
 namespace Mageplaza\CronSchedule\Controller\Adminhtml\Job;
 
+use Magento\Framework\App\Response\Http;
 use Magento\Framework\DataObject;
 use Magento\Framework\View\Layout;
 use Mageplaza\CronSchedule\Controller\Adminhtml\AbstractJob;
@@ -45,7 +46,7 @@ class Validate extends AbstractJob
 
         $name = $this->getRequest()->getParam('code');
 
-        $validator = new Zend_Validate_Regex(['pattern' => '/^[a-z][a-z_0-9]{0,30}$/']);
+        $validator = new Zend_Validate_Regex('/^[a-z][a-z_0-9]{0,30}$/');
         if (!$validator->isValid($name)) {
             $this->messageManager->addErrorMessage(__(
                 'Cron job code "%1" is invalid. Please use only letters (a-z), numbers (0-9) or underscore(_) in this field, first character should be a letter.',
@@ -70,6 +71,9 @@ class Validate extends AbstractJob
             $response->setHtmlMessage($layout->getMessagesBlock()->getGroupedHtml());
         }
 
-        $this->getResponse()->setBody($response->toJson());
+        /** @var Http $resObj */
+        $resObj = $this->getResponse();
+
+        $resObj->setBody($response->toJson());
     }
 }

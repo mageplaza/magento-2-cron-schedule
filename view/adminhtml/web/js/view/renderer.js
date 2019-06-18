@@ -41,8 +41,8 @@ define([
             showCurrentTime: false,
             zoomMin: 1000,
             zoomMax: 1000 * 60 * 60 * 24 * 365 * 10,
-            min: new Date((new Date()).valueOf() - day),
-            max: new Date((new Date()).valueOf() + hour)
+            min: new Date(-2208985200000),
+            max: new Date(32503683600000)
         };
 
     $.widget('mageplaza.cron_schedule', {
@@ -60,16 +60,16 @@ define([
             $(document).on('mouseover', '.timeline-event', function (event) {
                 var classAttr = $(this).attr('class').split(' ');
 
-                if (classAttr.length > 4) {
-                    tooltip.show();
-
-                    tooltip.css({
-                        top: (event.pageY + 5) + 'px',
-                        left: (event.pageX + 5) + 'px'
-                    });
-
-                    tooltip.html(self.options.data[classAttr[4]]['tooltip']);
+                if (classAttr.length <= 4) {
+                    return;
                 }
+
+                tooltip.html(self.options.data[classAttr[4]].tooltip);
+                tooltip.show();
+                tooltip.css({
+                    top: (event.pageY + 5) + 'px',
+                    right: (window.innerWidth - event.pageX - 5) + 'px'
+                });
             });
 
             $(document).on('mouseout', '.timeline-event', function () {

@@ -21,7 +21,6 @@
 
 namespace Mageplaza\CronSchedule\Model;
 
-use Exception;
 use Magento\Framework\Exception\LocalizedException;
 
 /**
@@ -35,13 +34,6 @@ class Schedule extends \Magento\Cron\Model\Schedule
      */
     public function clearLog()
     {
-        /** @var \Magento\Cron\Model\Schedule $item */
-        foreach ($this->getResourceCollection()->getItems() as $item) {
-            try {
-                $this->_getResource()->delete($item);
-            } catch (Exception $e) {
-                $this->_logger->critical($e->getMessage());
-            }
-        }
+        $this->getResourceCollection()->walk('delete');
     }
 }

@@ -37,18 +37,17 @@ class MassExecute extends AbstractJob
     {
         $data = $this->getRequest()->getParams();
 
-        $success = 0;
-        $failure = 0;
+        $result = ['success' => 0, 'failure' => 0];
 
         foreach ($this->getSelectedRecords($data) as $name) {
-            $this->executeJob($this->helper->getJobs($name), $success, $failure);
+            $this->executeJob($this->helper->getJobs($name), $result);
         }
 
-        if ($success) {
+        if ($success = $result['success']) {
             $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been executed.', $success));
         }
 
-        if ($failure) {
+        if ($failure = $result['failure']) {
             $this->messageManager->addErrorMessage(__(
                 'A total of %1 record(s) can not execute. Please check the Cron Jobs Logs for more details.',
                 $failure

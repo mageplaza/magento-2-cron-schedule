@@ -33,10 +33,10 @@ list($data, $rows) = $block->getCronJobData();
         </label>
         <div class="control admin__field-control">
             <select id="mpcronschedule-period" class="admin__control-select">
+                <option value="all"><?= $block->escapeHtml(__('All Time')) ?></option>
                 <option value="day"><?= $block->escapeHtml(__('Last 24 Hours')) ?></option>
                 <option value="week"><?= $block->escapeHtml(__('Last 7 Days')) ?></option>
                 <option value="month"><?= $block->escapeHtml(__('Last 30 Days')) ?></option>
-                <option value="all"><?= $block->escapeHtml(__('All Time')) ?></option>
             </select>
         </div>
     </div>

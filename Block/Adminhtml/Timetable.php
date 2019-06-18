@@ -141,8 +141,11 @@ class Timetable extends Template
         }
 
         if ($status === Schedule::STATUS_SUCCESS) {
-            $time    = strtotime($schedule->getFinishedAt()) - strtotime($schedule->getExecutedAt());
-            $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Total Executed Time'), $time . ' second(s)');
+            $tooltip .= sprintf(
+                '<tr><th>%s</th><td>%s</td></tr>',
+                __('Total Executed Time'),
+                $schedule->getData('total_time')
+            );
         }
 
         $tooltip .= sprintf(

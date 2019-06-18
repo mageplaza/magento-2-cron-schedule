@@ -21,15 +21,14 @@
 
 namespace Mageplaza\CronSchedule\Controller\Adminhtml;
 
-use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Cron\Model\ResourceModel\Schedule;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Ui\Component\MassAction\Filter;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 
 /**
  * Class AbstractLog
@@ -107,17 +106,9 @@ abstract class AbstractLog extends Action
      */
     protected function deleteSchedule($collection)
     {
-        $count = 0;
+        $count = $collection->getSize();
 
-        /** @var \Magento\Cron\Model\Schedule $item */
-        foreach ($collection->getItems() as $item) {
-            try {
-                $this->scheduleResource->delete($item);
-                $count++;
-            } catch (Exception $e) {
-                $this->messageManager->addErrorMessage($e->getMessage());
-            }
-        }
+        $collection->walk('delete');
 
         return $count;
     }

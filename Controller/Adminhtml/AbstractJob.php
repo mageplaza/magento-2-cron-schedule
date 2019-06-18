@@ -188,14 +188,17 @@ abstract class AbstractJob extends Action
 
     /**
      * @param array $jobData
-     * @param int $success
-     * @param int $failure
+     * @param array $result
+     * @param bool $showError
      */
-    protected function executeJob($jobData, &$success, &$failure)
+    protected function executeJob($jobData, &$result, $showError = false)
     {
         if (isset($jobData['status']) && empty($jobData['status'])) {
             return;
         }
+
+        $success = &$result['success'];
+        $failure = &$result['failure'];
 
         $data = [
             'job_code'     => $jobData['name'],
@@ -210,12 +213,17 @@ abstract class AbstractJob extends Action
             $this->jobFactory->create()->setData($jobData)->executeJob($schedule);
             $success++;
         } catch (Exception $e) {
+            $failure++;
+
             $schedule->addData([
                 'status'      => Schedule::STATUS_ERROR,
                 'messages'    => $e->getMessage(),
                 'executed_at' => null,
             ]);
-            $failure++;
+
+            if ($showError) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+            }
         }
 
         try {
