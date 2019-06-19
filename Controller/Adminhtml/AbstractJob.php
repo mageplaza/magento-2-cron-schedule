@@ -179,6 +179,10 @@ abstract class AbstractJob extends Action
         unset($filters['placeholder']);
         foreach ($filters as $column => $value) {
             $jobs = array_filter($jobs, function ($item) use ($column, $value) {
+                if (is_array($value)) {
+                    return in_array($item[$column], $value, true);
+                }
+
                 return stripos($item[$column], $value) !== false;
             });
         }
