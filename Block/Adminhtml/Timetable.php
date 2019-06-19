@@ -27,7 +27,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Cron\Model\Schedule;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Mageplaza\CronSchedule\Helper\Data;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\CollectionFactory;
 
 /**
  * Class Timetable

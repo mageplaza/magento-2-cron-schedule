@@ -21,7 +21,7 @@
 
 namespace Mageplaza\CronSchedule\Controller\Adminhtml\Log;
 
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\Collection;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Mageplaza\CronSchedule\Controller\Adminhtml\AbstractLog;
