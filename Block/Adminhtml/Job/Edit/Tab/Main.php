@@ -85,9 +85,7 @@ class Main extends Generic
     protected function _prepareForm()
     {
         /** @var Form $form */
-        $form = $this->_formFactory->create(
-            ['data' => ['id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post']]
-        );
+        $form = $this->_formFactory->create();
 
         $fieldset = $form->addFieldset('main_fieldset', ['legend' => __('General')]);
 
