@@ -24,7 +24,6 @@ namespace Mageplaza\CronSchedule\Controller\Adminhtml;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
-use Magento\Cron\Model\ResourceModel\Schedule;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Ui\Component\MassAction\Filter;
 use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\Collection;
@@ -52,11 +51,6 @@ abstract class AbstractLog extends Action
     protected $filter;
 
     /**
-     * @var Schedule
-     */
-    protected $scheduleResource;
-
-    /**
      * @var CollectionFactory
      */
     protected $collectionFactory;
@@ -67,19 +61,16 @@ abstract class AbstractLog extends Action
      * @param Context $context
      * @param PageFactory $resultPageFactory
      * @param Filter $filter
-     * @param Schedule $scheduleResource
      * @param CollectionFactory $collectionFactory
      */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
         Filter $filter,
-        Schedule $scheduleResource,
         CollectionFactory $collectionFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->filter            = $filter;
-        $this->scheduleResource  = $scheduleResource;
         $this->collectionFactory = $collectionFactory;
 
         parent::__construct($context);

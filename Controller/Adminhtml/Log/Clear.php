@@ -35,7 +35,11 @@ class Clear extends AbstractLog
      */
     public function execute()
     {
-        $count = $this->deleteSchedule($this->collectionFactory->create());
+        $collection = $this->collectionFactory->create();
+
+        $count = $collection->getSize();
+
+        $collection->getConnection()->truncateTable($collection->getMainTable());
 
         $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been deleted.', $count));
 
