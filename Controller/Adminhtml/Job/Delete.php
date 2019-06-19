@@ -21,6 +21,7 @@
 
 namespace Mageplaza\CronSchedule\Controller\Adminhtml\Job;
 
+use Exception;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Mageplaza\CronSchedule\Controller\Adminhtml\AbstractJob;
@@ -40,10 +41,12 @@ class Delete extends AbstractJob
             $object = $this->_initJob();
 
             if ($object->getIsUser()) {
-                $object->deleteJob();
-                $this->cacheTypeList->cleanType('config');
-
-                $this->messageManager->addSuccessMessage(__('The cron job has been deleted.'));
+                try {
+                    $object->deleteJob();
+                    $this->messageManager->addSuccessMessage(__('The cron job has been deleted.'));
+                } catch (Exception $e) {
+                    $this->messageManager->addErrorMessage($e->getMessage());
+                }
             } else {
                 $this->messageManager->addErrorMessage(__('The cron job can\'t be deleted.'));
             }

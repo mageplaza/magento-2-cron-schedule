@@ -21,6 +21,7 @@
 
 namespace Mageplaza\CronSchedule\Controller\Adminhtml\Job;
 
+use Exception;
 use Magento\Framework\App\ResponseInterface;
 use Mageplaza\CronSchedule\Controller\Adminhtml\AbstractJob;
 
@@ -41,12 +42,17 @@ class MassStatus extends AbstractJob
 
         $count = 0;
         foreach ($this->getSelectedRecords($data) as $name) {
-            $this->jobFactory->create()->setData($this->helper->getJobs($name))->changeJobStatus($status);
-            $count++;
+            try {
+                $this->jobFactory->create()->setData($this->helper->getJobs($name))->changeJobStatus($status);
+                $count++;
+            } catch (Exception $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+            }
         }
 
-        $this->cacheTypeList->cleanType('config');
-        $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been updated.', $count));
+        if ($count) {
+            $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been updated.', $count));
+        }
 
         return $this->_redirect('*/*/');
     }

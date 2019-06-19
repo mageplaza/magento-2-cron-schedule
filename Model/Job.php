@@ -23,8 +23,6 @@ namespace Mageplaza\CronSchedule\Model;
 
 use Exception;
 use Magento\Cron\Model\Schedule;
-use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface as ScopeConfig;
 use Magento\Framework\App\Config\Value;
 use Magento\Framework\App\Config\ValueFactory;
 use Magento\Framework\Data\Collection\AbstractDb;
@@ -60,11 +58,6 @@ class Job extends AbstractModel
     private $helper;
 
     /**
-     * @var ConfigInterface
-     */
-    private $configInterface;
-
-    /**
      * @var ValueFactory
      */
     private $valueFactory;
@@ -75,7 +68,6 @@ class Job extends AbstractModel
      * @param Context $context
      * @param Registry $registry
      * @param Data $helper
-     * @param ConfigInterface $configInterface
      * @param ValueFactory $valueFactory
      * @param AbstractResource|null $resource
      * @param AbstractDb|null $resourceCollection
@@ -85,15 +77,13 @@ class Job extends AbstractModel
         Context $context,
         Registry $registry,
         Data $helper,
-        ConfigInterface $configInterface,
         ValueFactory $valueFactory,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
         array $data = []
     ) {
-        $this->helper          = $helper;
-        $this->configInterface = $configInterface;
-        $this->valueFactory    = $valueFactory;
+        $this->helper       = $helper;
+        $this->valueFactory = $valueFactory;
 
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
@@ -127,11 +117,14 @@ class Job extends AbstractModel
 
     /**
      * @return $this
+     * @throws Exception
      */
     public function deleteJob()
     {
         foreach ([self::EXPR_PATH, self::MODEL_PATH, self::STATUS_PATH, self::IS_USER_PATH] as $path) {
-            $this->configInterface->deleteConfig($this->getCronPath($path), ScopeConfig::SCOPE_TYPE_DEFAULT, 0);
+            /** @var Value $config */
+            $config = $this->valueFactory->create();
+            $config->load($this->getCronPath($path), 'path')->delete();
         }
 
         return $this;
@@ -174,12 +167,15 @@ class Job extends AbstractModel
      * @param bool $statusValue
      *
      * @return Job
+     * @throws Exception
      */
     public function changeJobStatus($statusValue)
     {
-        $status = $this->getCronPath(self::STATUS_PATH);
-
-        $this->configInterface->saveConfig($status, $statusValue, ScopeConfig::SCOPE_TYPE_DEFAULT, 0);
+        /** @var Value $config */
+        $config = $this->valueFactory->create();
+        $config->load($this->getCronPath(self::STATUS_PATH), 'path');
+        $config->setValue($statusValue);
+        $config->save();
 
         return $this;
     }
