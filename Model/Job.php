@@ -153,7 +153,7 @@ class Job extends AbstractModel
             throw new RuntimeException(__('No callbacks found'));
         }
 
-        $model = $this->helper->getObject($instance);
+        $model = $this->helper->createObject($instance);
 
         $callback = [$model, $method];
 
