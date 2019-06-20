@@ -26,7 +26,7 @@ use Magento\Framework\Notification\MessageInterface;
 use Magento\Framework\Phrase;
 use Magento\Framework\UrlInterface;
 use Mageplaza\CronSchedule\Helper\Data;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\CollectionFactory;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 
 /**
  * Class Message

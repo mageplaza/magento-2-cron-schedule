@@ -28,8 +28,8 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Mageplaza\CronSchedule\Block\Adminhtml\Timetable;
 use Mageplaza\CronSchedule\Helper\Data;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\Collection;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\CollectionFactory;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 

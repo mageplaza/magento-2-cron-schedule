@@ -23,8 +23,8 @@ namespace Mageplaza\CronSchedule\Model;
 
 use Magento\Cron\Model\Schedule;
 use Mageplaza\CronSchedule\Helper\Email;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\Collection;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\CollectionFactory;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 use Zend_Db_Expr;
 
 /**
