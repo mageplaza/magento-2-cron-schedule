@@ -34,6 +34,8 @@ class Schedule extends \Magento\Cron\Model\Schedule
      */
     public function clearLog()
     {
-        $this->getResourceCollection()->walk('delete');
+        $collection = $this->getResourceCollection();
+
+        $collection->getConnection()->truncateTable($collection->getMainTable());
     }
 }
