@@ -47,15 +47,14 @@ define([
 
     $.widget('mageplaza.cron_schedule', {
         _create: function () {
-            var self = this;
+            var self    = this,
+                tooltip = $('#tooltip-block');
 
             google.load('visualization', '1', {
                 'callback': function () {
                     self.drawVisualization();
                 }
             });
-
-            var tooltip = $('#tooltip-block');
 
             $(document).on('mouseover', '.timeline-event', function (event) {
                 var classAttr = $(this).attr('class').split(' ');
@@ -82,6 +81,10 @@ define([
 
             // Create and populate a data table
             var data = new google.visualization.DataTable();
+
+            // Instantiate our timeline object
+            var timeline = new links.Timeline(document.getElementById('mpcronschedule'), orgOptions);
+
             data.addColumn('datetime', 'start');
             data.addColumn('datetime', 'end');
             data.addColumn('string', 'group');
@@ -95,8 +98,6 @@ define([
                 data.addRow(row);
             });
 
-            // Instantiate our timeline object
-            var timeline = new links.Timeline(document.getElementById('mpcronschedule'), orgOptions);
             timeline.setData(data);
             timeline.move(0);
 
