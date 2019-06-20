@@ -70,9 +70,7 @@ class ConfigObserver implements ObserverInterface
 
         $this->modelConfig->saveConfig(
             Data::CONFIG_MODULE_PATH . '/general/clear_schedule_expr',
-            $expr,
-            ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
-            0
+            $expr
         );
     }
 }

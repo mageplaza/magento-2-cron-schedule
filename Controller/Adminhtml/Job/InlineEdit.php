@@ -61,6 +61,8 @@ class InlineEdit extends AbstractJob
             }
         }
 
+        $this->cacheTypeList->cleanType('config');
+
         return $resultJson->setData(compact('messages', 'error'));
     }
 }

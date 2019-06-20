@@ -26,8 +26,8 @@ use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Ui\Component\MassAction\Filter;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\Collection;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Grid\CollectionFactory;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 
 /**
  * Class AbstractLog

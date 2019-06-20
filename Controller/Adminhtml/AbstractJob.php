@@ -27,6 +27,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Cron\Model\Schedule;
 use Magento\Cron\Model\ScheduleFactory;
+use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
@@ -82,6 +83,11 @@ abstract class AbstractJob extends Action
     protected $logger;
 
     /**
+     * @var TypeListInterface
+     */
+    protected $cacheTypeList;
+
+    /**
      * AbstractLog constructor.
      *
      * @param Context $context
@@ -92,6 +98,7 @@ abstract class AbstractJob extends Action
      * @param JobFactory $jobFactory
      * @param ScheduleFactory $scheduleFactory
      * @param LoggerInterface $logger
+     * @param TypeListInterface $cacheTypeList
      */
     public function __construct(
         Context $context,
@@ -101,7 +108,8 @@ abstract class AbstractJob extends Action
         Data $helper,
         JobFactory $jobFactory,
         ScheduleFactory $scheduleFactory,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        TypeListInterface $cacheTypeList
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->jsonFactory       = $jsonFactory;
@@ -110,6 +118,7 @@ abstract class AbstractJob extends Action
         $this->jobFactory        = $jobFactory;
         $this->scheduleFactory   = $scheduleFactory;
         $this->logger            = $logger;
+        $this->cacheTypeList     = $cacheTypeList;
 
         parent::__construct($context);
     }

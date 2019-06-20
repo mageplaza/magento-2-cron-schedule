@@ -43,6 +43,7 @@ class Delete extends AbstractJob
             if ($object->getIsUser()) {
                 try {
                     $object->deleteJob();
+                    $this->cacheTypeList->cleanType('config');
                     $this->messageManager->addSuccessMessage(__('The cron job has been deleted.'));
                 } catch (Exception $e) {
                     $this->messageManager->addErrorMessage($e->getMessage());

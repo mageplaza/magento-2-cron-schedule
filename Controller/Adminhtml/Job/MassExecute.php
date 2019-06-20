@@ -44,6 +44,7 @@ class MassExecute extends AbstractJob
         }
 
         if ($success = $result['success']) {
+            $this->cacheTypeList->cleanType('config');
             $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been executed.', $success));
         }
 
