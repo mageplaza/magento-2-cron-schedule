@@ -49,6 +49,7 @@ class Save extends AbstractJob
 
             try {
                 $object->saveJob($newObj->addData($data));
+                $this->cacheTypeList->cleanType('config');
 
                 if ($request->getParam('is_execute')) {
                     $result = ['success' => 0, 'failure' => 0];

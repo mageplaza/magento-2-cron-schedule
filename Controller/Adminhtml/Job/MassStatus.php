@@ -51,6 +51,7 @@ class MassStatus extends AbstractJob
         }
 
         if ($count) {
+            $this->cacheTypeList->cleanType('config');
             $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been updated.', $count));
         }
 
