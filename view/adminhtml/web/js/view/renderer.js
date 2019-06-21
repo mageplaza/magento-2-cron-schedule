@@ -92,8 +92,8 @@ define([
             data.addColumn('string', 'content');
 
             _.each(this.options.rows, function (row) {
-                row[0] = new Date(row[0]);
-                row[1] = new Date(row[1]);
+                row[0] = eval.call(null, row[0]);
+                row[1] = eval.call(null, row[1]);
 
                 data.addRow(row);
             });

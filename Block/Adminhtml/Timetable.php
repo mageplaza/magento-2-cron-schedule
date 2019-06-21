@@ -186,7 +186,7 @@ class Timetable extends Template
         $date = $this->dateFormat($date);
 
         return sprintf(
-            '%d,%d,%s',
+            'new Date(%d,%d,%s)',
             $this->datetime->date('Y', $date),
             $this->datetime->date('m', $date) - 1,
             $this->datetime->date('d,H,i,s', $date)
