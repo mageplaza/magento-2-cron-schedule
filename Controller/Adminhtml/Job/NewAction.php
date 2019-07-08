@@ -19,10 +19,21 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-use Magento\Framework\Component\ComponentRegistrar;
+namespace Mageplaza\CronSchedule\Controller\Adminhtml\Job;
 
-ComponentRegistrar::register(
-    ComponentRegistrar::MODULE,
-    'Mageplaza_CronSchedule',
-    __DIR__
-);
+use Mageplaza\CronSchedule\Controller\Adminhtml\AbstractJob;
+
+/**
+ * Class NewAction
+ * @package Mageplaza\CronSchedule\Controller\Adminhtml\Program
+ */
+class NewAction extends AbstractJob
+{
+    /**
+     * Forward to edit form
+     */
+    public function execute()
+    {
+        $this->_forward('edit');
+    }
+}

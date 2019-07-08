@@ -1,0 +1,57 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CronSchedule
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+use Mageplaza\CronSchedule\Block\Adminhtml\Timetable;
+use Mageplaza\CronSchedule\Helper\Data;
+
+/** @var Timetable $block */
+list($data, $rows) = $block->getCronJobData();
+?>
+
+<fieldset class="fieldset admin__fieldset">
+    <div class="field admin__field _required required">
+        <label class="label admin__field-label" for="mpcronschedule-period">
+            <?= $block->escapeHtml(__('Select Time')) ?>
+        </label>
+        <div class="control admin__field-control">
+            <select id="mpcronschedule-period" class="admin__control-select">
+                <option value="all"><?= $block->escapeHtml(__('All Time')) ?></option>
+                <option value="day"><?= $block->escapeHtml(__('Last 24 Hours')) ?></option>
+                <option value="week"><?= $block->escapeHtml(__('Last 7 Days')) ?></option>
+                <option value="month"><?= $block->escapeHtml(__('Last 30 Days')) ?></option>
+            </select>
+        </div>
+    </div>
+</fieldset>
+
+<div id="mpcronschedule"></div>
+<div id="tooltip-block" style="position:absolute; display:none"></div>
+
+<script type="text/x-magento-init">
+{
+    "#mpcronschedule": {
+        "Mageplaza_CronSchedule/js/view/renderer": {
+            "data": <?= $block->escapeJsQuote(Data::jsonEncode($data)) ?>,
+            "rows": <?= $block->escapeJsQuote(Data::jsonEncode($rows)) ?>
+        }
+    }
+}
+</script>

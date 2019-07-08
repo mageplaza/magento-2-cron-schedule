@@ -1,0 +1,77 @@
+<?xml version="1.0"?><!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CronSchedule
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mpcronschedule" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Cron Schedule</label>
+            <tab>mageplaza</tab>
+            <resource>Mageplaza_CronSchedule::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General</label>
+                <field id="backend_notification" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Backend Notifications</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If Yes, admin can see notification on backend when cron job run fail.</comment>
+                </field>
+                <field id="email_notification" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Notifications</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If Yes, send email to notify admin when cron job run fail.<br/>
+                    Install <a href="https://www.mageplaza.com/magento-2-smtp/?utm_source=mageplaza&utm_medium=mageplaza&utm_campaign=cron-schedule&utm_content=SMTP" target="_blank">Mageplaza SMTP</a> to avoid sending emails to spam box.]]></comment>
+                </field>
+                <field id="send_from" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sender</label>
+                    <depends>
+                        <field id="email_notification">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="send_to" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send To</label>
+                    <depends>
+                        <field id="email_notification">1</field>
+                    </depends>
+                    <comment>Separated by commas (,)</comment>
+                </field>
+                <field id="email_template" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <depends>
+                        <field id="email_notification">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="schedule" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Schedule For Email</label>
+                    <depends>
+                        <field id="email_notification">1</field>
+                    </depends>
+                    <source_model>Mageplaza\CronSchedule\Model\Config\Source\EmailTime</source_model>
+                </field>
+                <field id="clear_schedule" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Auto Clear Logs Every</label>
+                    <validate>validate-number validate-zero-or-greater validate-digits</validate>
+                    <comment>day(s). If Empty or 0, the cron jobs log will not be clean.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,80 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CronSchedule
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<!--@subject {{trans "Your cron job can not execute successfully!"}} @-->
+<!--@vars {} @-->
+<!--@styles
+#mpcronschedule-table {
+    width: 100%;
+}
+
+#mpcronschedule-table tr td, #mpcronschedule-table tr th {
+    padding: 11px 10px;
+}
+
+#mpcronschedule-table tr {
+    border-bottom: 1px solid #cccccc;
+}
+
+#mpcronschedule-table tr .col-message {
+    word-break: break-word;
+    min-width: 300px;
+}
+
+#mpcronschedule-table tr .col-date {
+    text-align: center;
+    min-width: 120px;
+}
+
+#mpcronschedule-table tr .col-status {
+    text-align: center;
+}
+
+#mpcronschedule-table tr td.col-status {
+    background: none repeat scroll 0 0;
+    color: #fff;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-top: 9px;
+    display: inline-block;
+    width: 100%;
+    padding: 2px 0 1px;
+}
+
+#mpcronschedule-table tr td.col-status.error {
+    background-color: #f86c6b;
+}
+
+#mpcronschedule-table tr td.col-status.missed {
+    background-color: #ffc107;
+}
+ @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Hi admin,"}}</p>
+<p>{{trans "One or more cron jobs can not execute successfully."}}</p>
+<p>{{trans "Please check the information below or go to <b>System > Cron Schedule > Cron Jobs Log</b> for more details."|raw}}</p>
+
+{{layout handle="mpcronschedule_list" schedules=$schedules area="frontend"}}
+
+{{template config_path="design/email/footer_template"}}

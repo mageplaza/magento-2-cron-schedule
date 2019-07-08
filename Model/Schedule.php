@@ -19,10 +19,23 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-use Magento\Framework\Component\ComponentRegistrar;
+namespace Mageplaza\CronSchedule\Model;
 
-ComponentRegistrar::register(
-    ComponentRegistrar::MODULE,
-    'Mageplaza_CronSchedule',
-    __DIR__
-);
+use Magento\Framework\Exception\LocalizedException;
+
+/**
+ * Class EmailNotify
+ * @package Mageplaza\CronSchedule\Model
+ */
+class Schedule extends \Magento\Cron\Model\Schedule
+{
+    /**
+     * @throws LocalizedException
+     */
+    public function clearLog()
+    {
+        $collection = $this->getResourceCollection();
+
+        $collection->getConnection()->truncateTable($collection->getMainTable());
+    }
+}

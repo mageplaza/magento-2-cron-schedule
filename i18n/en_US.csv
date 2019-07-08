@@ -1,0 +1,97 @@
+"Save and Continue Edit","Save and Continue Edit"
+"Save and Execute","Save and Execute"
+"Edit Cron Job ""%1""","Edit Cron Job ""%1"""
+"New Cron Job","New Cron Job"
+General,General
+"Cron Job Code","Cron Job Code"
+"Group Name","Group Name"
+Status,Status
+"Instance Classpath","Instance Classpath"
+"'E.g: ' .","'E.g: ' ."
+"Job Method","Job Method"
+"E.g: sendEmail","E.g: sendEmail"
+"Time Schedule","Time Schedule"
+"Using Cron format <a href=""%1"" target=""_blank"">here</a> to setting time for running cron job.","Using Cron format <a href=""%1"" target=""_blank"">here</a> to setting time for running cron job."
+"Cron Job Information","Cron Job Information"
+"Are you sure you want to do this?","Are you sure you want to do this?"
+"Run All Cron Jobs","Run All Cron Jobs"
+ID,ID
+Message,Message
+"Total Executed Time","Total Executed Time"
+"Created Date","Created Date"
+"Schedule Date","Schedule Date"
+"Executed Date","Executed Date"
+" Finished Date"," Finished Date"
+"The cron job has been deleted.","The cron job has been deleted."
+"The cron job can't be deleted.","The cron job can't be deleted."
+"We can't find a cron job to delete.","We can't find a cron job to delete."
+"This cron job no longer exists.","This cron job no longer exists."
+"This cron job can not be edited.","This cron job can not be edited."
+"Create New Cron Job","Create New Cron Job"
+"Manage Cron Jobs","Manage Cron Jobs"
+"Please correct the data sent.","Please correct the data sent."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"A total of %1 record(s) have been executed.","A total of %1 record(s) have been executed."
+"A total of %1 record(s) can not execute. Please check the Cron Jobs Logs for more details.","A total of %1 record(s) can not execute. Please check the Cron Jobs Logs for more details."
+"A total of %1 record(s) have been updated.","A total of %1 record(s) have been updated."
+"Command has been run.","Command has been run."
+"The cron job has been saved and executed.","The cron job has been saved and executed."
+"The cron job has been saved.","The cron job has been saved."
+"Cron job code ""%1"" is invalid. Please use only letters (a-z), numbers (0-9) or underscore(_) in this field, first character should be a letter.","Cron job code ""%1"" is invalid. Please use only letters (a-z), numbers (0-9) or underscore(_) in this field, first character should be a letter."
+"A cron job with this code already exists.","A cron job with this code already exists."
+"Invalid cron expression: %1","Invalid cron expression: %1"
+"Cron Jobs Logs","Cron Jobs Logs"
+"Cron Jobs Timetable","Cron Jobs Timetable"
+Disable,Disable
+Everyday,Everyday
+Weekly,Weekly
+Monthly,Monthly
+Yearly,Yearly
+Pending,Pending
+Running,Running
+Success,Success
+Missed,Missed
+Error,Error
+"Every minute","Every minute"
+"Every 5 Minutes","Every 5 Minutes"
+"Every 10 Minutes","Every 10 Minutes"
+"Every 30 Minutes","Every 30 Minutes"
+"Every Hour","Every Hour"
+"Every 3 Hours","Every 3 Hours"
+"Every 6 Hours","Every 6 Hours"
+"Every 12 Hours","Every 12 Hours"
+Enable,Enable
+"No callbacks found","No callbacks found"
+"One or more cron jobs can not execute successfully! Click <a href=""%1"">here</a> to see more details.","One or more cron jobs can not execute successfully! Click <a href=""%1"">here</a> to see more details."
+Edit,Edit
+View,View
+"Select Time","Select Time"
+"All Time","All Time"
+"Last 24 Hours","Last 24 Hours"
+"Last 7 Days","Last 7 Days"
+"Last 30 Days","Last 30 Days"
+"Your cron job can not execute successfully!","Your cron job can not execute successfully!"
+"Hi admin,","Hi admin,"
+"One or more cron jobs can not execute successfully.","One or more cron jobs can not execute successfully."
+"Cron Schedule","Cron Schedule"
+"Backend Notifications","Backend Notifications"
+"If Yes, admin can see notification on backend when cron job run fail.","If Yes, admin can see notification on backend when cron job run fail."
+"Email Notifications","Email Notifications"
+Sender,Sender
+"Send To","Send To"
+"Separated by commas (,)","Separated by commas (,)"
+"Email Template","Email Template"
+"Schedule For Email","Schedule For Email"
+"Auto Clear Logs Every","Auto Clear Logs Every"
+"day(s). If Empty or 0, the cron jobs log will not be clean.","day(s). If Empty or 0, the cron jobs log will not be clean."
+"Add New","Add New"
+Delete,Delete
+"Are you sure to delete selected items?","Are you sure to delete selected items?"
+"Change Status","Change Status"
+Execute,Execute
+"Clear All","Clear All"
+"Job Code","Job Code"
+"Created At","Created At"
+"Scheduled At","Scheduled At"
+"Executed At","Executed At"
+"Finished At","Finished At"
