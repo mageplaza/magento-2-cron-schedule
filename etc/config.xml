@@ -23,6 +23,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <mpcronschedule>
+            <module>
+                <type>1</type>
+            </module>
             <general>
                 <backend_notification>1</backend_notification>
                 <email_notification>1</email_notification>
