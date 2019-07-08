@@ -38,7 +38,7 @@ class Edit extends AbstractJob
     public function execute()
     {
         $object = $this->_initJob();
-        $name   = $this->getRequest()->getParam('name');
+        $name = $this->getRequest()->getParam('name');
 
         if ($name !== null) {
             if ($object->getData() === null) {
@@ -61,7 +61,7 @@ class Edit extends AbstractJob
 
         $this->registry->register('mpcronschedule_job', $object);
 
-        $pageTitle  = $name !== null ? __('Edit Cron Job "%1"', $name) : __('Create New Cron Job');
+        $pageTitle = $name !== null ? __('Edit Cron Job "%1"', $name) : __('Create New Cron Job');
         $resultPage = $this->_initAction();
         $resultPage->getConfig()->getTitle()->prepend($pageTitle);
 

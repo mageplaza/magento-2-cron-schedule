@@ -22,7 +22,6 @@
 namespace Mageplaza\CronSchedule\Observer;
 
 use Magento\Config\Model\ResourceModel\Config as ModelConfig;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Mageplaza\CronSchedule\Helper\Data;
@@ -54,7 +53,7 @@ class ConfigObserver implements ObserverInterface
         Data $helper
     ) {
         $this->modelConfig = $modelConfig;
-        $this->helper      = $helper;
+        $this->helper = $helper;
     }
 
     /**

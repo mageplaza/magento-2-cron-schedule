@@ -73,7 +73,7 @@ class Main extends Generic
         array $data = []
     ) {
         $this->jobStatus = $jobStatus;
-        $this->group     = $group;
+        $this->group = $group;
 
         parent::__construct($context, $registry, $formFactory, $data);
     }
@@ -130,12 +130,14 @@ class Main extends Generic
             'required' => true
         ]);
 
-        $note = 'Using Cron format <a href="%1" target="_blank">here</a> to setting time for running cron job.';
         $fieldset->addField('schedule', 'text', [
             'name'     => 'schedule',
             'label'    => __('Time Schedule'),
             'title'    => __('Time Schedule'),
-            'note'     => __($note, 'http://www.nncron.ru/help/EN/working/cron-format.htm'),
+            'note'     => __(
+                'Using Cron format <a href="%1" target="_blank">here</a> to setting time for running cron job.',
+                'http://www.nncron.ru/help/EN/working/cron-format.htm'
+            ),
             'required' => true
         ]);
 

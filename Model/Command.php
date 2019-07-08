@@ -22,9 +22,9 @@
 namespace Mageplaza\CronSchedule\Model;
 
 use Magento\Framework\Exception\LocalizedException;
-use Symfony\Component\Process\PhpExecutableFinder;
 use Magento\Framework\Process\PhpExecutableFinderFactory;
 use Magento\Framework\ShellInterface;
+use Symfony\Component\Process\PhpExecutableFinder;
 
 /**
  * Class Command
@@ -52,7 +52,7 @@ class Command
         ShellInterface $shell,
         PhpExecutableFinderFactory $phpExecutableFinderFactory
     ) {
-        $this->shell               = $shell;
+        $this->shell = $shell;
         $this->phpExecutableFinder = $phpExecutableFinderFactory->create();
     }
 

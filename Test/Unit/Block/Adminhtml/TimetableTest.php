@@ -71,9 +71,9 @@ class TimetableTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->context           = $this->getMockBuilder(Context::class)->disableOriginalConstructor()->getMock();
-        $this->helper            = $this->getMockBuilder(Data::class)->disableOriginalConstructor()->getMock();
-        $this->datetime          = $this->getMockBuilder(DateTime::class)->disableOriginalConstructor()->getMock();
+        $this->context = $this->getMockBuilder(Context::class)->disableOriginalConstructor()->getMock();
+        $this->helper = $this->getMockBuilder(Data::class)->disableOriginalConstructor()->getMock();
+        $this->datetime = $this->getMockBuilder(DateTime::class)->disableOriginalConstructor()->getMock();
         $this->collectionFactory = $this->getMockBuilder(CollectionFactory::class)
             ->setMethods(['create'])
             ->disableOriginalConstructor()->getMock();
@@ -91,7 +91,7 @@ class TimetableTest extends PHPUnit_Framework_TestCase
 
     public function testGetCronData()
     {
-        $data  = [];
+        $data = [];
         $count = 0;
 
         $schedules = $this->getMockBuilder(Collection::class)->disableOriginalConstructor()->getMock();
@@ -115,9 +115,9 @@ class TimetableTest extends PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()->getMock();
         $schedules->method('getItems')->willReturn([$schedule]);
 
-        $id      = '1';
-        $status  = 'pending';
-        $date    = '2019-06-14 14:23:00';
+        $id = '1';
+        $status = 'pending';
+        $date = '2019-06-14 14:23:00';
         $jobCode = 'code';
 
         $schedule->method('getId')->willReturn($id);
@@ -171,7 +171,7 @@ class TimetableTest extends PHPUnit_Framework_TestCase
         $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('ID'), $id);
 
         $statusHtml = sprintf('<span class="tooltip-severity %s">%s</span>', $status, $status);
-        $tooltip    .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Status'), $statusHtml);
+        $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Status'), $statusHtml);
 
         $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Created Date'), $date);
         $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Schedule Date'), $date);

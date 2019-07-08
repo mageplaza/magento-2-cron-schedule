@@ -102,7 +102,7 @@ class JobProvider extends AbstractDataProvider
     public function addOrder($field, $direction)
     {
         $this->sortField = $field;
-        $this->sortDir   = strtolower($direction);
+        $this->sortDir = strtolower($direction);
     }
 
     /**
@@ -111,7 +111,7 @@ class JobProvider extends AbstractDataProvider
      */
     public function setLimit($offset, $size)
     {
-        $this->size   = $size;
+        $this->size = $size;
         $this->offset = $offset;
     }
 
@@ -143,7 +143,7 @@ class JobProvider extends AbstractDataProvider
 
         // add order
         $sortField = $this->sortField;
-        $sortDir   = $this->sortDir;
+        $sortDir = $this->sortDir;
         usort($items, function ($a, $b) use ($sortField, $sortDir) {
             return $sortDir === 'asc' ? $a[$sortField] > $b[$sortField] : $a[$sortField] < $b[$sortField];
         });

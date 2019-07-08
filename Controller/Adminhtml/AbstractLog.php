@@ -70,7 +70,7 @@ abstract class AbstractLog extends Action
         CollectionFactory $collectionFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
-        $this->filter            = $filter;
+        $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
 
         parent::__construct($context);

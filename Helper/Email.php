@@ -113,6 +113,9 @@ class Email extends AbstractData
 
     /**
      * @param array $templateVars
+     *
+     * @throws MailException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function sendEmail($templateVars = [])
     {

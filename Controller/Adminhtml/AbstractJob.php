@@ -112,13 +112,13 @@ abstract class AbstractJob extends Action
         TypeListInterface $cacheTypeList
     ) {
         $this->resultPageFactory = $resultPageFactory;
-        $this->jsonFactory       = $jsonFactory;
-        $this->registry          = $registry;
-        $this->helper            = $helper;
-        $this->jobFactory        = $jobFactory;
-        $this->scheduleFactory   = $scheduleFactory;
-        $this->logger            = $logger;
-        $this->cacheTypeList     = $cacheTypeList;
+        $this->jsonFactory = $jsonFactory;
+        $this->registry = $registry;
+        $this->helper = $helper;
+        $this->jobFactory = $jobFactory;
+        $this->scheduleFactory = $scheduleFactory;
+        $this->logger = $logger;
+        $this->cacheTypeList = $cacheTypeList;
 
         parent::__construct($context);
     }
@@ -174,7 +174,7 @@ abstract class AbstractJob extends Action
             });
         }
 
-        $jobs    = array_values($allJobs);
+        $jobs = array_values($allJobs);
         $filters = (array) $data['filters'];
         unset($filters['placeholder']);
         foreach ($filters as $column => $value) {

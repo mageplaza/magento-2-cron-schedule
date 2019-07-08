@@ -21,10 +21,10 @@
 
 namespace Mageplaza\CronSchedule\Controller\Adminhtml\Log;
 
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Mageplaza\CronSchedule\Controller\Adminhtml\AbstractLog;
+use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
 
 /**
  * Class MassDelete

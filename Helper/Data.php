@@ -72,8 +72,8 @@ class Data extends AbstractData
         DateTime $dateTime
     ) {
         $this->cronConfig = $cronConfig;
-        $this->timezone   = $timezone;
-        $this->dateTime   = $dateTime;
+        $this->timezone = $timezone;
+        $this->dateTime = $dateTime;
 
         parent::__construct($context, $objectManager, $storeManager);
     }
@@ -133,7 +133,7 @@ class Data extends AbstractData
      */
     private function getJobData($job, $code, $group)
     {
-        $job['name']  = $code;
+        $job['name'] = $code;
         $job['group'] = $group;
 
         if (!isset($job['schedule'])) {
@@ -174,17 +174,8 @@ class Data extends AbstractData
      */
     public function getTime($isFloor = false)
     {
-        if ($this->versionCompare('2.2.0')) {
-            $time = $this->dateTime->gmtTimestamp();
-        } else {
-            $time = $this->timezone->scopeTimeStamp();
-        }
-
-        if ($isFloor) {
-            $format = '%Y-%m-%d %H:%M:00';
-        } else {
-            $format = '%Y-%m-%d %H:%M:%S';
-        }
+        $time = $this->versionCompare('2.2.0') ? $this->dateTime->gmtTimestamp() : $this->timezone->scopeTimeStamp();
+        $format = $isFloor ? '%Y-%m-%d %H:%M:00' : '%Y-%m-%d %H:%M:%S';
 
         return strftime($format, $time);
     }

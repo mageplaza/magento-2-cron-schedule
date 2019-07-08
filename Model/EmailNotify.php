@@ -53,10 +53,14 @@ class EmailNotify
         Email $helper,
         CollectionFactory $collectionFactory
     ) {
-        $this->helper            = $helper;
+        $this->helper = $helper;
         $this->collectionFactory = $collectionFactory;
     }
 
+    /**
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\MailException
+     */
     public function sendEmail()
     {
         if (!$this->helper->isEmailNotification() || empty($this->helper->getSendTo())) {
