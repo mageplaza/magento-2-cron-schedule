@@ -57,11 +57,7 @@ php bin/magento setup:upgrade
 php bin/magento setup:static-content:deploy
 ```
 
-## 4. Introduction 
-
-Cron Schedule is one of the most utility which helps you to execute tasks with no effort from the admin panel. The extension prevents errors from popping up, avoid interruption as well as create a smooth flow for your store’s performance. 
-
-## 5. Highlight Features
+## 4. Highlight Features
 
 ### Monitor all cronjobs at the admin panel
 
@@ -94,7 +90,7 @@ Notably, each of the cron tasks is set up along with a specific color bar showin
 
 Cron jobs can be run smoothly by applying "Execute" at the Action box. Manual execution makes the process of updating cron tasks more active and straightforward for store admins. 
 
-## More Features
+## 5. More Features
 
 ### Multiple Actions
 Remove, execute, or change the status of various cron jobs at once 
@@ -116,7 +112,7 @@ Set time to automatically clear up the log (such as every 30 minutes, etc.)
 View and manage cron jobs at various store views at Cron Jobs grid or timetable. 
 
 
-## Full Features Lists 
+## 6. Full Features Lists 
 
 ### Configuration 
 
@@ -133,8 +129,6 @@ View and manage cron jobs at various store views at Cron Jobs grid or timetable.
 - Multiple actions (delete, change status, execute) on multiple cron jobs 
 - Make a change of store view
 - Cover/ Uncover grid columns
-
-
 
 ### Create/ Edit Cron Jobs
 - Add the cron job code 
@@ -153,7 +147,7 @@ View and manage cron jobs at various store views at Cron Jobs grid or timetable.
 - See result states of cron jobs in details at the timetable format 
 - Choose when to display cron jobs: last 24 hours, last 7 days, last 30 days
 
-## 8. User Guide
+## 7. User Guide
 
 
 ### How to use
@@ -331,6 +325,6 @@ From the Admin Panel, go to `System > Cron Schedule > Cron Jobs Timetable`
 
 
 
-## License
+## 8. License
 
 From June 23th 2019, this extension is licensed under the [MIT License](https://github.com/mageplaza/magento-2-cron-schedule/blob/master/LICENSE)
