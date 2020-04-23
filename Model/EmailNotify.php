@@ -74,7 +74,7 @@ class EmailNotify
             ->addFieldToFilter('mpcronschedule_email_sent', ['null' => true])
             ->addFieldToFilter('status', ['in' => [Schedule::STATUS_ERROR, Schedule::STATUS_MISSED]]);
 
-        if (!$collection->getSize()) {
+        if (!$collection->getSize() || empty($this->helper->getConfigGeneral('send_to'))) {
             return;
         }
 
