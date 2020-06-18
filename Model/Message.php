@@ -61,8 +61,8 @@ class Message implements MessageInterface
         UrlInterface $urlBuilder,
         CollectionFactory $collectionFactory
     ) {
-        $this->helper = $helper;
-        $this->urlBuilder = $urlBuilder;
+        $this->helper            = $helper;
+        $this->urlBuilder        = $urlBuilder;
         $this->collectionFactory = $collectionFactory;
     }
 

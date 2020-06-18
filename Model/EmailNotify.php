@@ -22,6 +22,8 @@
 namespace Mageplaza\CronSchedule\Model;
 
 use Magento\Cron\Model\Schedule;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\MailException;
 use Mageplaza\CronSchedule\Helper\Email;
 use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
 use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
@@ -53,13 +55,13 @@ class EmailNotify
         Email $helper,
         CollectionFactory $collectionFactory
     ) {
-        $this->helper = $helper;
+        $this->helper            = $helper;
         $this->collectionFactory = $collectionFactory;
     }
 
     /**
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Magento\Framework\Exception\MailException
+     * @throws LocalizedException
+     * @throws MailException
      */
     public function sendEmail()
     {

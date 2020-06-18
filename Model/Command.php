@@ -52,7 +52,7 @@ class Command
         ShellInterface $shell,
         PhpExecutableFinderFactory $phpExecutableFinderFactory
     ) {
-        $this->shell = $shell;
+        $this->shell               = $shell;
         $this->phpExecutableFinder = $phpExecutableFinderFactory->create();
     }
 
