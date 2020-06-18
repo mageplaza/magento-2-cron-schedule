@@ -53,7 +53,7 @@ class ConfigObserver implements ObserverInterface
         Data $helper
     ) {
         $this->modelConfig = $modelConfig;
-        $this->helper = $helper;
+        $this->helper      = $helper;
     }
 
     /**

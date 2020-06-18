@@ -66,8 +66,8 @@ class Timetable extends Template
         CollectionFactory $collectionFactory,
         array $data = []
     ) {
-        $this->helper = $helper;
-        $this->datetime = $datetime;
+        $this->helper            = $helper;
+        $this->datetime          = $datetime;
         $this->collectionFactory = $collectionFactory;
 
         parent::__construct($context, $data);
@@ -78,7 +78,7 @@ class Timetable extends Template
      */
     public function getCronJobData()
     {
-        $data = [];
+        $data  = [];
         $count = 0;
 
         $schedules = $this->collectionFactory->create();
@@ -88,8 +88,8 @@ class Timetable extends Template
         /** @var Schedule $schedule */
         foreach ($schedules->getItems() as $schedule) {
             $status = $schedule->getStatus();
-            $start = $schedule->getScheduledAt();
-            $end = $start;
+            $start  = $schedule->getScheduledAt();
+            $end    = $start;
 
             switch ($status) {
                 case Schedule::STATUS_RUNNING:
@@ -97,7 +97,7 @@ class Timetable extends Template
                     break;
                 case Schedule::STATUS_SUCCESS:
                     $start = $schedule->getExecutedAt();
-                    $end = $schedule->getFinishedAt();
+                    $end   = $schedule->getFinishedAt();
                     break;
             }
 
@@ -134,7 +134,7 @@ class Timetable extends Template
         $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('ID'), $schedule->getId());
 
         $statusHtml = sprintf('<span class="tooltip-severity %s">%s</span>', $status, $status);
-        $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Status'), $statusHtml);
+        $tooltip    .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Status'), $statusHtml);
 
         if ($message = $schedule->getMessages()) {
             $tooltip .= sprintf('<tr><th>%s</th><td>%s</td></tr>', __('Message'), $this->escapeQuote($message));

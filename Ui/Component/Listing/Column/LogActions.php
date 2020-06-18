@@ -60,7 +60,7 @@ class LogActions extends Column
         array $data = []
     ) {
         $this->urlBuilder = $urlBuilder;
-        $this->helper = $helper;
+        $this->helper     = $helper;
 
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }

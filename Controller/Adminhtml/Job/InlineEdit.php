@@ -39,9 +39,9 @@ class InlineEdit extends AbstractJob
     {
         /** @var Json $resultJson */
         $resultJson = $this->jsonFactory->create();
-        $error = false;
-        $messages = [];
-        $items = $this->getRequest()->getParam('items', []);
+        $error      = false;
+        $messages   = [];
+        $items      = $this->getRequest()->getParam('items', []);
 
         if (empty($items) && !$this->getRequest()->getParam('isAjax')) {
             return $resultJson->setData([
@@ -57,7 +57,7 @@ class InlineEdit extends AbstractJob
                 $object->changeJobStatus($items[$name]['status']);
             } catch (Exception $e) {
                 $messages[] = '[Cron Job: ' . $object->getName() . '] ' . $e->getMessage();
-                $error = true;
+                $error      = true;
             }
         }
 

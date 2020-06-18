@@ -45,7 +45,7 @@ class Validate extends AbstractJob
         $error = false;
 
         $request = $this->getRequest();
-        $name = $request->getParam('code');
+        $name    = $request->getParam('code');
 
         $validator = new Zend_Validate_Regex('/^[a-z][a-z_0-9]{0,30}$/');
         if (!$validator->isValid($name)) {
@@ -57,7 +57,7 @@ class Validate extends AbstractJob
         }
 
         $orgName = $request->getParam('org_name');
-        $jobs = $this->helper->getJobs();
+        $jobs    = $this->helper->getJobs();
 
         if ($name !== $orgName && isset($jobs[$name])) {
             $this->messageManager->addErrorMessage(__('A cron job with this code already exists.'));
@@ -65,7 +65,7 @@ class Validate extends AbstractJob
         }
 
         $schedule = $request->getParam('schedule');
-        $e = count(preg_split('#\s+#', $schedule, null, PREG_SPLIT_NO_EMPTY));
+        $e        = count(preg_split('#\s+#', $schedule, null, PREG_SPLIT_NO_EMPTY));
         if ($e < 5 || $e > 6) {
             $this->messageManager->addErrorMessage(__('Invalid cron expression: %1', $schedule));
             $error = true;

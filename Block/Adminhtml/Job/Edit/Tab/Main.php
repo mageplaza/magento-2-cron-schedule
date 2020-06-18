@@ -73,7 +73,7 @@ class Main extends Generic
         array $data = []
     ) {
         $this->jobStatus = $jobStatus;
-        $this->group = $group;
+        $this->group     = $group;
 
         parent::__construct($context, $registry, $formFactory, $data);
     }

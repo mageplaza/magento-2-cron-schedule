@@ -82,7 +82,7 @@ class Job extends AbstractModel
         AbstractDb $resourceCollection = null,
         array $data = []
     ) {
-        $this->helper = $helper;
+        $this->helper       = $helper;
         $this->valueFactory = $valueFactory;
 
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
@@ -140,7 +140,7 @@ class Job extends AbstractModel
     public function executeJob(&$schedule)
     {
         $instance = $this->getInstance();
-        $method = $this->getMethod();
+        $method   = $this->getMethod();
 
         if (!isset($instance, $method)) {
             throw new RuntimeException(__('No callbacks found'));
@@ -171,10 +171,12 @@ class Job extends AbstractModel
      */
     public function changeJobStatus($statusValue)
     {
+        $path = $this->getCronPath(self::STATUS_PATH);
+
         /** @var Value $config */
         $config = $this->valueFactory->create();
-        $config->load($this->getCronPath(self::STATUS_PATH), 'path');
-        $config->setValue($statusValue);
+        $config->load($path, 'path');
+        $config->setPath($path)->setValue($statusValue);
         $config->save();
 
         return $this;

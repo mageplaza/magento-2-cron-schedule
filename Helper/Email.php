@@ -23,6 +23,7 @@ namespace Mageplaza\CronSchedule\Helper;
 
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\MailException;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\ObjectManagerInterface;
@@ -115,7 +116,7 @@ class Email extends AbstractData
      * @param array $templateVars
      *
      * @throws MailException
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function sendEmail($templateVars = [])
     {
