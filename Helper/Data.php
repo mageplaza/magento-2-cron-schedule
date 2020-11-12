@@ -21,8 +21,12 @@
 
 namespace Mageplaza\CronSchedule\Helper;
 
+use DateTime as BaseDateTime;
+use DateTimeZone;
+use Exception;
 use Magento\Cron\Model\ConfigInterface;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
@@ -54,6 +58,11 @@ class Data extends AbstractData
     private $dateTime;
 
     /**
+     * @var string
+     */
+    private $locale;
+
+    /**
      * Data constructor.
      *
      * @param Context $context
@@ -68,12 +77,14 @@ class Data extends AbstractData
         ObjectManagerInterface $objectManager,
         StoreManagerInterface $storeManager,
         ConfigInterface $cronConfig,
+        ResolverInterface $localeResolver,
         TimezoneInterface $timezone,
         DateTime $dateTime
     ) {
         $this->cronConfig = $cronConfig;
         $this->timezone   = $timezone;
         $this->dateTime   = $dateTime;
+        $this->locale     = $localeResolver->getLocale();
 
         parent::__construct($context, $objectManager, $storeManager);
     }
@@ -178,5 +189,21 @@ class Data extends AbstractData
         $format = $isFloor ? '%Y-%m-%d %H:%M:00' : '%Y-%m-%d %H:%M:%S';
 
         return strftime($format, $time);
+    }
+
+    /**
+     * @param string $date
+     * @return string
+     * @throws Exception
+     */
+    public function convertedDate($date)
+    {
+        $convertedDate = $this->timezone->date(
+            new BaseDateTime($date, new DateTimeZone('UTC')),
+            $this->locale,
+            true
+        );
+
+        return $convertedDate->format('M j, Y h:i:s A');
     }
 }

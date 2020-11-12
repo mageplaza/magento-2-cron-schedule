@@ -28,4 +28,16 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Ui\Model\Export\MetadataProvider">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="mpcronschedule_log_grid" xsi:type="array">
+                    <item name="created_at" xsi:type="string">created_at</item>
+                    <item name="scheduled_at" xsi:type="string">scheduled_at</item>
+                    <item name="executed_at" xsi:type="string">executed_at</item>
+                    <item name="finished_at" xsi:type="string">finished_at</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
 </config>
