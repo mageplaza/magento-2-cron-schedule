@@ -26,6 +26,7 @@ use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
 /** @var Template $block */
 /** @var Collection $collection */
 $collection = $block->getSchedules();
+$helper = $this->helper(\Mageplaza\CronSchedule\Helper\Data::class);
 
 $items = $collection ? $collection->getItems() : [];
 ?>
@@ -47,7 +48,7 @@ $items = $collection ? $collection->getItems() : [];
             <td class="col-code"><?= $block->escapeHtml($item->getJobCode()) ?></td>
             <td class="col-status <?= $block->escapeHtml($status) ?>"><?= $block->escapeHtml($status) ?></td>
             <td class="col-message"><?= $block->escapeHtml($item->getMessages()) ?></td>
-            <td class="col-date"><?= $block->escapeHtml($item->getScheduledAt()) ?></td>
+            <td class="col-date"><?= $block->escapeHtml($helper->convertedDate($item->getScheduledAt())) ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
