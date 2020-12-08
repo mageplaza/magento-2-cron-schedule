@@ -193,6 +193,7 @@ class Data extends AbstractData
 
     /**
      * @param string $date
+     *
      * @return string
      * @throws Exception
      */
