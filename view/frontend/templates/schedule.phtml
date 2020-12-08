@@ -41,7 +41,7 @@ $items = $collection ? $collection->getItems() : [];
     </thead>
     <tbody>
     <?php /** @var Schedule $item */
-    foreach ($items as $item) :
+    foreach ($items as $item):
         $status = $item->getStatus();
         ?>
         <tr>
