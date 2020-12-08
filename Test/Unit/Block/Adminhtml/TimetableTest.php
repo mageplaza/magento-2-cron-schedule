@@ -31,13 +31,13 @@ use Mageplaza\CronSchedule\Helper\Data;
 use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
 use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\CollectionFactory;
 use PHPUnit_Framework_MockObject_MockObject;
-use PHPUnit_Framework_TestCase;
+//use PHPUnit_Framework_TestCase;
 
 /**
  * Class TimetableTest
  * @package Mageplaza\CronSchedule\Test\Unit\Block\Checkout
  */
-class TimetableTest extends PHPUnit_Framework_TestCase
+class TimetableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Context|PHPUnit_Framework_MockObject_MockObject
