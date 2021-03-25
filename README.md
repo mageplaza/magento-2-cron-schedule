@@ -1,6 +1,6 @@
 # Magento 2 Cron Schedule extension Free
 
-[Cron Schedule from Mageplaza](https://www.mageplaza.com/magento-2-cron-schedule/) is one of the most utility which helps you to execute tasks with no effort from the admin panel. The extension prevents errors from popping up, avoid interruption as well as create a smooth flow for your store’s performance. 
+[Magento 2 Cron Schedule from Mageplaza](https://www.mageplaza.com/magento-2-cron-schedule/) is one of the most utility which helps you to execute tasks with no effort from the admin panel. The extension prevents errors from popping up, avoid interruption as well as create a smooth flow for your store’s performance. 
 
 
 ## 1. Documentation
@@ -328,3 +328,14 @@ From the Admin Panel, go to `System > Cron Schedule > Cron Jobs Timetable`
 ## 8. License
 
 From June 23th 2019, this extension is licensed under the [MIT License](https://github.com/mageplaza/magento-2-cron-schedule/blob/master/LICENSE)
+
+**Explore more extensions:**
+- [Magento 2 Promo Bars](https://www.mageplaza.com/magento-2-promo-bar/)
+- [Magento 2 Image Optimizer Free](https://github.com/mageplaza/magento-2-image-optimizer)
+- [Magento 2 Custom Order Number](https://www.mageplaza.com/magento-2-custom-order-number/)
+- [Magento 2 Return Merchandise Authorization](https://www.mageplaza.com/magento-2-rma/)
+- [Magento 2 Google Analytics Module](https://www.mageplaza.com/magento-2-google-analytics-pro/)
+- [Magento 2 Pre Order Product](https://www.mageplaza.com/magento-2-pre-order/)
+- [Magento 2 Custom Order Grid](https://www.mageplaza.com/magento-2-order-grid/)
+- [Magento 2 Import Export Categories](https://www.mageplaza.com/magento-2-import-export-categories/)
+- [Magento 2 Import Export CMS Pages](https://www.mageplaza.com/magento-2-import-export-cms/)
