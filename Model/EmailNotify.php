@@ -79,8 +79,8 @@ class EmailNotify
         if (!$collection->getSize() || empty($this->helper->getConfigGeneral('send_to'))) {
             return;
         }
-
-        $this->helper->sendEmail(['schedules' => $collection]);
+        $items = $collection->getItems();
+        $this->helper->sendEmail(['schedules' => $items]);
 
         $schedules = array_column($collection->getData(), 'schedule_id');
 
