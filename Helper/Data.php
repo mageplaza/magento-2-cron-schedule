@@ -186,9 +186,9 @@ class Data extends AbstractData
     public function getTime($isFloor = false)
     {
         $time   = $this->versionCompare('2.2.0') ? $this->dateTime->gmtTimestamp() : $this->timezone->scopeTimeStamp();
-        $format = $isFloor ? '%Y-%m-%d %H:%M:00' : '%Y-%m-%d %H:%M:%S';
+        $format = $isFloor ? 'Y-m-d H:i:00' : 'Y-m-d H:i:s';
 
-        return strftime($format, $time);
+        return date($format, $time);
     }
 
     /**

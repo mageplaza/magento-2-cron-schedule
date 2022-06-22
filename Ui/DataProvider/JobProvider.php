@@ -145,7 +145,7 @@ class JobProvider extends AbstractDataProvider
         $sortField = $this->sortField;
         $sortDir   = $this->sortDir;
         usort($items, function ($a, $b) use ($sortField, $sortDir) {
-            return $sortDir === 'asc' ? $a[$sortField] > $b[$sortField] : $a[$sortField] < $b[$sortField];
+            return $sortDir === 'asc' ? $a[$sortField] <=> $b[$sortField] : $a[$sortField] <=> $b[$sortField];
         });
 
         $totalRecords = count($items);

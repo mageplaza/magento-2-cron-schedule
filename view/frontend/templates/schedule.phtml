@@ -21,14 +21,11 @@
 
 use Magento\Cron\Model\Schedule;
 use Magento\Framework\View\Element\Template;
-use Mageplaza\CronSchedule\Model\ResourceModel\Schedule\Collection;
 
 /** @var Template $block */
-/** @var Collection $collection */
-$collection = $block->getSchedules();
+$items = $block->getSchedules();
 $helper = $this->helper(\Mageplaza\CronSchedule\Helper\Data::class);
 
-$items = $collection ? $collection->getItems() : [];
 ?>
 <table id="mpcronschedule-table">
     <thead>
