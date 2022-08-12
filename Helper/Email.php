@@ -89,7 +89,7 @@ class Email extends AbstractData
      */
     public function getSendTo($storeId = null)
     {
-        return array_map('trim', explode(',', $this->getConfigGeneral('send_to', $storeId)));
+        return array_map('trim', explode(',', (string) $this->getConfigGeneral('send_to', $storeId)));
     }
 
     /**
