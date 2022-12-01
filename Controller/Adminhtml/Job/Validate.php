@@ -25,8 +25,8 @@ use Magento\Framework\App\Response\Http;
 use Magento\Framework\DataObject;
 use Magento\Framework\View\Layout;
 use Mageplaza\CronSchedule\Controller\Adminhtml\AbstractJob;
-use Zend_Validate_Exception;
-use Zend_Validate_Regex;
+use Magento\Framework\Validator\ValidateException;
+use Laminas\Validator\Regex;
 
 /**
  * Class Validate
@@ -36,7 +36,7 @@ class Validate extends AbstractJob
 {
     /**
      * @return void
-     * @throws Zend_Validate_Exception
+     * @throws ValidateException
      */
     public function execute()
     {
@@ -47,7 +47,7 @@ class Validate extends AbstractJob
         $request = $this->getRequest();
         $name    = $request->getParam('code');
 
-        $validator = new Zend_Validate_Regex('/^[a-z][a-z_0-9]{0,30}$/');
+        $validator = new Regex('/^[a-z][a-z_0-9]{0,30}$/');
         if (!$validator->isValid($name)) {
             $this->messageManager->addErrorMessage(__(
                 'Cron job code "%1" is invalid. Please use only letters (a-z), numbers (0-9) or underscore(_) in this field, first character should be a letter.',
@@ -65,7 +65,7 @@ class Validate extends AbstractJob
         }
 
         $schedule = $request->getParam('schedule');
-        $e        = count(preg_split('#\s+#', $schedule, null, PREG_SPLIT_NO_EMPTY));
+        $e        = count(preg_split('#\s+#', $schedule, -1, PREG_SPLIT_NO_EMPTY));
         if ($e < 5 || $e > 6) {
             $this->messageManager->addErrorMessage(__('Invalid cron expression: %1', $schedule));
             $error = true;

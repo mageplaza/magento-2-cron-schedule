@@ -130,7 +130,7 @@ class JobProvider extends AbstractDataProvider
             $items = array_filter($items, function ($item) use ($field, $value, $type) {
                 switch ($type) {
                     case 'like':
-                        return stripos($item[$field], substr($value, '1', '-1')) !== false;
+                        return $item[$field] ? stripos($item[$field], substr($value, '1', '-1')) !== false : false;
                     case 'eq':
                         return $item[$field] === $value;
                     case 'in':
@@ -145,7 +145,7 @@ class JobProvider extends AbstractDataProvider
         $sortField = $this->sortField;
         $sortDir   = $this->sortDir;
         usort($items, function ($a, $b) use ($sortField, $sortDir) {
-            return $sortDir === 'asc' ? $a[$sortField] <=> $b[$sortField] : $a[$sortField] <=> $b[$sortField];
+            return $sortDir === 'asc' ? ($a[$sortField] > $b[$sortField] ? 1 : -1) : ($a[$sortField] < $b[$sortField] ? 1 : -1);
         });
 
         $totalRecords = count($items);

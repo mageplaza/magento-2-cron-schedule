@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="cron_schedule" resource="default">
+    <column xsi:type="boolean" name="mpcronschedule_email_sent" nullable="true" comment="Mageplaza Cron Schedule Is Mail Sent"/>
+  </table>
+</schema>
