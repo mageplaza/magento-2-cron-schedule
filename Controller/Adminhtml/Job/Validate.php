@@ -65,7 +65,7 @@ class Validate extends AbstractJob
         }
 
         $schedule = $request->getParam('schedule');
-        $e        = count(preg_split('#\s+#', $schedule, null, PREG_SPLIT_NO_EMPTY));
+        $e        = count(preg_split('#\s+#', $schedule,  -1, PREG_SPLIT_NO_EMPTY));
         if ($e < 5 || $e > 6) {
             $this->messageManager->addErrorMessage(__('Invalid cron expression: %1', $schedule));
             $error = true;
