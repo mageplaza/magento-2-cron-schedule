@@ -1,6 +1,8 @@
 # Magento 2 Cron Schedule extension Free
 
-[Magento 2 Cron Schedule from Mageplaza](https://www.mageplaza.com/magento-2-cron-schedule/) is one of the most utility which helps you to execute tasks with no effort from the admin panel. The extension prevents errors from popping up, avoid interruption as well as create a smooth flow for your store’s performance. 
+> **(Update) 2023-02-08**: This project will be marked as a paid item and no longer be maintained as free. For further updates and technical support, please follow [Magento 2 Cron Schedule from Mageplaza](https://www.mageplaza.com/magento-2-cron-schedule/) for more information. We understand that this change might create inconvenience for our users. However, this is to ensure that the module will be updated with more useful features to support Magento 2 stores better. If you have any concerns or ideas about any features you would like to see, don’t hesitate to [contact us](https://www.mageplaza.com/support/) and leave a request.
+
+Magento 2 Cron Schedule is one of the most utility which helps you to execute tasks with no effort from the admin panel. The extension prevents errors from popping up, avoid interruption as well as create a smooth flow for your store’s performance. 
 
 
 ## 1. Documentation
